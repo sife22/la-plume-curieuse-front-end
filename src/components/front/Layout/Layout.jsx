@@ -6,6 +6,7 @@ import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
 function Layout() {
     return (
@@ -13,6 +14,7 @@ function Layout() {
             <SideNav />
             <Routes>
                 <Route path='/' exact element={<Home />} />
+                <Route path='*' element={<ErrorPage />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/qui-somme-nous' element={<About />} />
                 <Route path='/politique-confidentialite' element={<PrivacyPolicy />} />
