@@ -33,12 +33,9 @@ function Footer() {
                         </ul>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-5">
-                        <h5 className="font-primary text-white mb-4">Title</h5>
+                        <h5 className="font-primary text-white mb-4">Connexion</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#!">Title</a></li>
-                            <li><a href="#!">Title</a></li>
-                            <li><a href="#!">Title</a></li>
-                            <li><a href="#!">Title</a></li>
+                            <li><a href="/connexion">Se connecter</a></li>
                         </ul>
                     </div>
                 </div>

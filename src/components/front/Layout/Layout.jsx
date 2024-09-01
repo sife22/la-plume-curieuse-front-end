@@ -5,6 +5,7 @@ import Contact from '../Contact/Contact'
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../Home/Home'
+import Login from '../Login/Login'
 
 function Layout() {
     return (
@@ -15,6 +16,7 @@ function Layout() {
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/qui-somme-nous' element={<About />} />
                 <Route path='/politique-confidentialite' element={<PrivacyPolicy />} />
+                <Route path='/connexion' element={<Login />} />
             </Routes>
         </section>
     )
