@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import './SideNav.css';
 
 function SideNav() {
 
@@ -9,19 +10,19 @@ function SideNav() {
     return (
         <aside>
             <div className="sidenav position-sticky d-flex flex-column justify-content-between">
-                <a className="navbar-brand logo" href="/" alt="logo">
+                <Link className="navbar-brand logo" to="/" alt="logo">
                     <img src="images/playstation-logo-colour.svg" alt="" />
-                </a>
+                </Link>
 
                 <div className="navbar navbar-dark my-4 p-0 font-primary">
                     <ul className="navbar-nav w-100">
-                        <li className={`nav-item ${location.pathname == '/' ? 'active' : ''}`}>
+                        <li className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}>
                             <Link className="nav-link text-white px-0" to='/'>Accueil</Link>
                         </li>
-                        <li className={`nav-item ${location.pathname == '/qui-somme-nous' ? 'active' : ''}`}>
+                        <li className={`nav-item ${location.pathname === '/qui-somme-nous' ? 'active' : ''}`}>
                             <Link className="nav-link text-white px-0" to='/qui-somme-nous'>Qui somme-nous?</Link>
                         </li>
-                        <li className={`nav-item ${location.pathname == '/contact' ? 'active' : ''}`}>
+                        <li className={`nav-item ${location.pathname === '/contact' ? 'active' : ''}`}>
 
                             <Link className="nav-link text-white px-0" to='/contact'>Contact</Link>
                         </li>

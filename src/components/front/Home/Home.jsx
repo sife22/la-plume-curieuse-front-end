@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from '../Footer/Footer'
+import Newsletter from '../Newsletter/Newsletter'
 
 function Home() {
     return (
@@ -68,17 +69,12 @@ function Home() {
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="#!" class="text-white text-primary-onHover p-2">
-                                        <span class="fab fa-facebook-f"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-white text-primary-onHover p-2">
-                                        <span class="fab fa-instagram"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-white text-primary-onHover p-2">
                                         <span class="fab fa-linkedin-in"></span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#!" class="text-white text-primary-onHover p-2">
+                                        <span class="fab fa-github"></span>
                                     </a>
                                 </li>
                             </ul>
@@ -100,19 +96,7 @@ function Home() {
                                 </div>
                         </div>
 
-                        <div class="widget bg-dark p-4 text-center">
-                            <h2 class="widget-title text-white d-inline-block mt-4">Abonnez-vous au blog</h2>
-                            <p class="mt-4">Lorem ipsum dolor sit coectetur elit. Tincidu nfywjt leo mi, urna. Arcu ve
-                                isus, condimentum ut vulpate cursus por.</p>
-                            <form action="#">
-                                <div class="form-group">
-                                    <input type="email" class="form-control bg-transparent rounded-0 my-4"
-                                        placeholder="Votre boite mail" />
-                                    <button class="btn btn-primary">Abonnez-vous maintenant<img src="images/arrow-right.png"
-                                        alt="" /></button>
-                                </div>
-                            </form>
-                        </div>
+                        <Newsletter />
 
                       
 
