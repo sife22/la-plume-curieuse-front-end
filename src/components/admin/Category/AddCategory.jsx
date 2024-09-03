@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ErrorPage() {
-  return (
-    <div className="main-content">
+function AddCategory() {
+    return (
+        <div className="main-content">
             <header className="mobile-nav pt-4">
                 <div className="container">
                     <div className="row align-items-center">
@@ -22,16 +22,15 @@ function ErrorPage() {
             <div className="nav-toggle-overlay"></div>
 
             <div className="container py-4 my-5">
+
                 <div className="row">
-                    <div className="col-md-10">
-                        <div className="contact-form bg-dark">
-                            <h1 className="text-white add-letter-space text-danger">Destination introuvable !</h1>
-                        </div>
+                    <div className="col-md-9">
+                        <h1 className="text-white add-letter-space mb-3">Ajouter catégorie</h1>
                     </div>
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
-export default ErrorPage
+export default AddCategory

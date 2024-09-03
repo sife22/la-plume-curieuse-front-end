@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Footer() {
     return (
@@ -30,7 +31,7 @@ function Footer() {
                     <div className="col-lg-3 col-sm-6 mb-5">
                         <h5 className="font-primary text-white mb-4">Connexion</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/connexion">Se connecter</a></li>
+                            <li><Link to="/connexion">Se connecter</Link></li>
                         </ul>
                     </div>
                 </div>
