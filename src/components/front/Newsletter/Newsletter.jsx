@@ -2,22 +2,30 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 function Newsletter() {
+    const [loading, setLoading] = useState(false);
+
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
     const handleSubscribe = (e) => {
         e.preventDefault();
-            axios.post('https://lpc-back-end.ddev.site/api/newsletter', {email}, {
+        setLoading(true)
+            axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/api/newsletter`, {email}, {
                 headers:{
                     "Accept": "application/json"
                 }
             }).then(
                 (response)=>{
+                    setError('')
+                    setLoading(false)
                     console.log('Inscription réussie, Merci', response)
                     setMessage('Inscription réussie, Merci');
                 }
             ).catch((error) => {
+                setMessage('');
+
+                setLoading(false)
             console.log(error.response.data.message)
             setError(error.response.data.message)
         })
@@ -30,7 +38,7 @@ function Newsletter() {
                 <div class="form-group">
                     <input type="email" class="form-control bg-transparent rounded-0 my-4"
                         placeholder="Votre boite mail" value={email} onChange={(e)=>setEmail(e.target.value)} required />
-                    <button class="btn btn-primary" onClick={handleSubscribe}>Abonnez-vous maintenant<img src="images/arrow-right.png"
+                    <button class="btn btn-primary" onClick={handleSubscribe} disabled={loading} >{loading ? '...' : 'Abonnez-vous maintenant'} <img src="images/arrow-right.png"
                         alt="" /></button>
                         {message && (<p className='mt-3 text-success'>{message}</p>)}
                         {error && (<p className='mt-3 text-warning'>{error}</p>)}

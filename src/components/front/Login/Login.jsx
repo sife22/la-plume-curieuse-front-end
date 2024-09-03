@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../features/auth';
 
+
 function Login() {
 
     // On crée les variables pour stocker les valeurs (email, password)
@@ -14,40 +15,52 @@ function Login() {
     const [error, setError] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const [loading, setLoading] = useState(false);
+
     // On crée une instance de useDispatch
     const dispatch = useDispatch();
 
     // On crée la fonction pour gérer login
     const handleLogin = (e) => {
+        
         e.preventDefault();
-        axios.post('https://lpc-back-end.ddev.site/api/login', { email, password }, {
+        setLoading(true)
+        axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/login`, { email, password }, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             }
-        }).then((response)=>{
+        }).then((response) => {
+
             console.log(response);
             dispatch(login({
-                'username': response.data.username,
+                'name': response.data.user.name,
+                'username': response.data.user.username,
+                'phone': response.data.user.phone,
+                'email': response.data.user.email,
+                'picture': response.data.user.picture,
                 'access_token': response.data.access_token,
                 'isLoggedIn': true,
             }));
+            setLoading(false)
             navigate('/dashboard');
-        }).catch((error)=>{
+        }).catch((error) => {
+            setLoading(false)
+
             if (error.status === 401) {
                 console.log(error.response.data.message);
                 setErrors([]);
                 setError(error.response.data.message);
-            } else if(error.status === 422) {
+            } else if (error.status === 422) {
                 console.log(error.response.data.errors);
                 setError(null);
                 setErrors(error.response.data.errors);
-            }            
+            }
         })
     }
 
     const navigate = useNavigate();
-    
+
 
     return (
         <div className="main-content">
@@ -77,27 +90,29 @@ function Login() {
                             <form className="needs-validation" novalidate>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <div className="form-group mb-5">
+                                        <div className="form-group mb-2">
                                             <label for="email" className="text-black-300">Email</label>
                                             <input type="email" id="email"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 required onChange={(e) => setEmail(e.target.value)} />
-                                            {errors.email && (<p className="text-warning">{errors.email[0]}</p>)}
+                                            <p className={`text-warning ${!errors.email && 'invisible'}`}>{errors.email ? errors.email[0] : 'Feedback'}</p>
+
                                         </div>
                                     </div>
                                     <div className="col-md-6">
-                                        <div className="form-group mb-5">
+                                        <div className="form-group mb-2">
                                             <label for="password" className="text-black-300">Mot de passe</label>
                                             <input type="password" id="password"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 required onChange={(e) => setPassword(e.target.value)} />
-                                            {errors.password && (<p className="text-warning">{errors.password[0]}</p>)}
+                                            <p className={`text-warning ${!errors.password && 'invisible'}`}>{errors.password ? errors.password[0] : 'Feedback'}</p>
+
                                         </div>
                                     </div>
 
                                     <div className="col-md-12">
-                                        <button type="button" onClick={handleLogin} className="btn btn-sm btn-primary">Se connecter <img
-                                            src="images/arrow-right.png" alt="" /></button>
+                                        <button type="button" onClick={handleLogin} className="btn btn-sm btn-primary" disabled={loading}>{loading ? 'Chargement...' : 'Se connecter'} {!loading ? <img
+                                            src="images/arrow-right.png" alt="" /> : ''}</button>
                                         {error && (<p className="text-danger mt-3">{error}</p>)}
                                     </div>
                                 </div>

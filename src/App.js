@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './components/front/Layout/Layout';
 import AdminLayout from './components/admin/Layout/Layout';
@@ -13,6 +13,7 @@ import Categories from './components/admin/Category/Categories';
 import AddCategory from './components/admin/Category/AddCategory';
 import ProtectedRoute from './middlewares/ProtectedRoute';
 import AlreadyLoggedIn from './middlewares/AlreadyLoggedIn';
+import AdminNewsletter from './components/admin/Newsletter/Newsletter';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route index element={<AdminHome />} />
           <Route path='/dashboard/categories' element={<Categories />} />
           <Route path='/dashboard/ajouter-categorie' element={<AddCategory />} />
+          <Route path='/dashboard/emails' element={<AdminNewsletter />} />
           <Route path='*' element={<ErrorPage />} />
         </Route>
         <Route path='/' element={<AlreadyLoggedIn><Layout /></AlreadyLoggedIn>}>

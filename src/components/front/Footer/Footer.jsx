@@ -9,14 +9,14 @@ function Footer() {
                     <div className="col-lg-3 col-sm-6 mb-5">
                         <h5 className="font-primary text-white mb-4">La Plume Curieuse</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/politique-confidentialite">Politique & Confidentialité</a></li>
+                            <li><Link to="/politique-confidentialite">Politique & Confidentialité</Link></li>
                         </ul>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-5">
                         <h5 className="font-primary text-white mb-4">Pages</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/contact">Contactez-nous</a></li>
-                            <li><a href="/qui-somme-nous">Qui somme-nous ?</a></li>
+                            <li><Link to="/contact">Contactez-nous</Link></li>
+                            <li><Link to="/qui-somme-nous">Qui somme-nous ?</Link></li>
                         </ul>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-5">

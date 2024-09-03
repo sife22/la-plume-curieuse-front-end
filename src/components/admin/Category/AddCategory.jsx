@@ -22,10 +22,41 @@ function AddCategory() {
             <div className="nav-toggle-overlay"></div>
 
             <div className="container py-4 my-5">
-
                 <div className="row">
-                    <div className="col-md-9">
-                        <h1 className="text-white add-letter-space mb-3">Ajouter catégorie</h1>
+                    <div className="col-md-11">
+                        <div className="contact-form bg-dark">
+                            <h1 className="text-white add-letter-space mb-5">Ajouter une catégorie</h1>
+                            <form className="needs-validation" novalidate>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group mb-2">
+                                            <label for="title" className="text-black-300">Nom</label>
+                                            <input type="text" id="title"
+                                                className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
+                                                required />
+                                            <p className='text-warning'></p>
+
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group mb-2">
+                                            <label for="description" className="text-black-300">Description</label>
+                                            <input type="text" id="description"
+                                                className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
+                                                required />
+                                            <p className='text-warning'></p>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md-12 mt-3">
+                                        <button type="button" className="btn btn-sm btn-primary" > Ajouter <img
+                                            src="images/arrow-right.png" alt="" /></button>
+                                        <p className="text-danger mt-3"></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

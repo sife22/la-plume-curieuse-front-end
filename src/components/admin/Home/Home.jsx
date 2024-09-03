@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 function Home() {
+    
+    // On récupère notre statut grâce à useSelector
     const state = useSelector((state) => state.auth.value)
     return (
         <div className="main-content">
@@ -27,8 +29,8 @@ function Home() {
 
                 <div className="row">
                     <div className="col-md-9">
-                        <h1 className="text-white add-letter-space mb-3">Bienvenu a si {state.username}</h1>
-                        <span className="text-white add-letter-space mb-3">Token est faut être stocké : {state.access_token}</span>
+                        <h2 className="text-white add-letter-space mb-3">Bienvenu chez vous : {state.name}</h2>
+                        <span className="text-white add-letter-space mb-3">Votre ACCESS_TOKEN est  : {state.access_token}</span>
                     </div>
                 </div>
             </div>
