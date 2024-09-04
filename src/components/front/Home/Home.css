@@ -1,0 +1,7 @@
+.categories{
+    display: grid;
+
+    button{
+        margin: 2px 0px;
+    }
+}

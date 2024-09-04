@@ -11,7 +11,7 @@ function Newsletter() {
     const handleSubscribe = (e) => {
         e.preventDefault();
         setLoading(true)
-            axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/api/newsletter`, {email}, {
+            axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/newsletter`, {email}, {
                 headers:{
                     "Accept": "application/json"
                 }

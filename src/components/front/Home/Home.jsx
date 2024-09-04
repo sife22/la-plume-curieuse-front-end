@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../Footer/Footer'
 import Newsletter from '../Newsletter/Newsletter'
+import axios from 'axios'
+import './Home.css'
+import { Link } from 'react-router-dom'
 
 function Home() {
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        console.log(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`);
+
+        axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        }).then((response) => {
+            console.log(response.data.categories);
+            setCategories(response.data.categories);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }, [])
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">
@@ -79,29 +98,27 @@ function Home() {
 
                         <div className="widget bg-dark p-4 text-center">
                             <h2 className="widget-title text-white d-inline-block mt-4">Catégories</h2>
-                                <div className="form-group mt-4">
-                                    <button className="btn btn-dark">Catégorie 1<img src="images/arrow-right.png"
-                                        alt="" /></button>
-                                        <button className="btn btn-dark">Catégorie 1<img src="images/arrow-right.png"
-                                        alt="" /></button>
-                                        <button className="btn btn-dark">Catégorie 1<img src="images/arrow-right.png"
-                                        alt="" /></button>
-                                        <button className="btn btn-dark">Catégorie 1<img src="images/arrow-right.png"
-                                        alt="" /></button>
-                                        <button className="btn btn-dark">Catégorie 1<img src="images/arrow-right.png"
-                                        alt="" /></button>
-                                </div>
+                            <div className="form-group mt-4 categories">
+                                {categories.map((category) => (
+                                    <Link to={category.slug} key={category.id}>
+                                        <button className="btn btn-dark">
+                                            {category.name}
+                                            <img src="images/arrow-right.png" alt="" />
+                                        </button>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
 
                         <Newsletter />
 
-                      
+
 
 
                     </div>
                 </div>
             </div>
-        <Footer/>
+            <Footer />
         </div>
     )
 }

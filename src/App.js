@@ -14,6 +14,8 @@ import AddCategory from './components/admin/Category/AddCategory';
 import ProtectedRoute from './middlewares/ProtectedRoute';
 import AlreadyLoggedIn from './middlewares/AlreadyLoggedIn';
 import AdminNewsletter from './components/admin/Newsletter/Newsletter';
+import Category from './components/front/Category/Category';
+import UpdateCategory from './components/admin/Category/UpdateCategory';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route index element={<AdminHome />} />
           <Route path='/dashboard/categories' element={<Categories />} />
           <Route path='/dashboard/ajouter-categorie' element={<AddCategory />} />
+          <Route path='/dashboard/modifier-categorie/:slugCategory' element={<UpdateCategory />} />
           <Route path='/dashboard/emails' element={<AdminNewsletter />} />
           <Route path='*' element={<ErrorPage />} />
         </Route>
@@ -32,6 +35,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/politique-confidentialite' element={<PrivacyPolicy />} />
           <Route path='/connexion' element={<Login />} />
+          <Route path='/:slugCategory' element={<Category />} />
           <Route path='*' element={<ErrorPage />} />
         </Route>
       </Routes>

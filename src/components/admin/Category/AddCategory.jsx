@@ -1,6 +1,43 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function AddCategory() {
+    const state = useSelector((state) => state.auth.value);
+    const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState([]);
+
+    const handleStore = (e) => {
+        e.preventDefault();
+        axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/add-category`, { name, description }, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${state.access_token}`,
+            }
+        }).then((response) => {
+            setErrors([]);
+            setMessage(response.data.message);
+            setLoading(true);
+            setTimeout(() => {
+                navigate('/dashboard/categories')
+            }, 2000
+            )
+        }).catch((error) => {
+            if (error.status === 422) {
+                console.log(error);
+                setErrors(error.response.data.errors);
+            } else {
+                console.log(error);
+            }
+        })
+    }
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">
@@ -30,11 +67,12 @@ function AddCategory() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group mb-2">
-                                            <label for="title" className="text-black-300">Nom</label>
-                                            <input type="text" id="title"
+                                            <label for="name" className="text-black-300">Nom</label>
+                                            <input type="text" id="name"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
-                                                required />
-                                            <p className='text-warning'></p>
+                                                required onChange={(e) => setName(e.target.value)} />
+                                            <p className={`text-warning ${!errors.name && 'invisible'}`}>{errors.name ? errors.name[0] : 'Feedback'}</p>
+
 
                                         </div>
                                     </div>
@@ -43,16 +81,19 @@ function AddCategory() {
                                             <label for="description" className="text-black-300">Description</label>
                                             <input type="text" id="description"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
-                                                required />
-                                            <p className='text-warning'></p>
+                                                required onChange={(e) => setDescription(e.target.value)} />
+                                            <p className={`text-warning ${!errors.description && 'invisible'}`}>{errors.description ? errors.description[0] : 'Feedback'}</p>
 
                                         </div>
                                     </div>
 
                                     <div className="col-md-12 mt-3">
-                                        <button type="button" className="btn btn-sm btn-primary" > Ajouter <img
+                                        <button type="submit" className="btn btn-sm btn-primary" onClick={handleStore} disabled={loading}> {loading ? 'Chargement...' : 'Ajouter'} <img
                                             src="images/arrow-right.png" alt="" /></button>
                                         <p className="text-danger mt-3"></p>
+                                    </div>
+                                    <div className="col-md-12">
+                                        {message && <h2 className="text-success mt-3">{message}</h2>}
                                     </div>
                                 </div>
                             </form>
