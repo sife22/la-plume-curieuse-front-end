@@ -4,6 +4,7 @@ import Newsletter from '../Newsletter/Newsletter'
 import axios from 'axios'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import TextTruncate from 'react-text-truncate'
 
 function Home() {
     const [categories, setCategories] = useState([]);
@@ -81,6 +82,13 @@ function Home() {
                                     </ul>
                                     <h2 className="card-title">
                                         <Link className="text-white opacity-75-onHover" to={`/${post.categories[0].slug}/${post.slug}`}>{post.title}</Link>
+                                        <TextTruncate
+                                         className="text-secondary"
+                                         line={3}
+                                         element="h4"
+                                         truncateText="…"
+                                         text={post.summary}
+                                         />
                                     </h2>
                                 </div>
                             </div>
