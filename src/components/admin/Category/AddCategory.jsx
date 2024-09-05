@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AddCategory() {
     const state = useSelector((state) => state.auth.value);
@@ -90,6 +90,8 @@ function AddCategory() {
                                     <div className="col-md-12 mt-3">
                                         <button type="submit" className="btn btn-sm btn-primary" onClick={handleStore} disabled={loading}> {loading ? 'Chargement...' : 'Ajouter'} <img
                                             src="images/arrow-right.png" alt="" /></button>
+                                        <Link to="/dashboard/categories"><button type="button" className="btn btn-sm btn-primary" disabled={loading}>Annuler </button></Link>
+
                                         <p className="text-danger mt-3"></p>
                                     </div>
                                     <div className="col-md-12">

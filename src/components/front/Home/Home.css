@@ -1,7 +1,7 @@
 .categories{
     display: grid;
 
-    button{
+    .btn{
         margin: 2px 0px;
     }
 }

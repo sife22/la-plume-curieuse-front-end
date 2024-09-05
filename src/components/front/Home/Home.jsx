@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 function Home() {
     const [categories, setCategories] = useState([]);
+    const [posts, setPosts] = useState([]);
     useEffect(() => {
         console.log(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`);
 
@@ -18,6 +19,18 @@ function Home() {
         }).then((response) => {
             console.log(response.data.categories);
             setCategories(response.data.categories);
+        }).catch((error) => {
+            console.log(error);
+        })
+
+        axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        }).then((response) => {
+            console.log(response.data.posts);
+            setPosts(response.data.posts);
         }).catch((error) => {
             console.log(error);
         })
@@ -44,31 +57,35 @@ function Home() {
 
             <div className="container pt-4 mt-5">
                 <div className="row justify-content-between">
-                    <div className="col-lg-7">
-
-                        <div className="card post-item bg-transparent border-0 mb-3">
-                            <a href="#!">
-                                <img className="card-img-top rounded-0" src="images/post/post-lg/03.png" alt="" />
-                            </a>
-                            <div className="card-body px-0">
-                                <ul className="post-meta mb-2">
-                                    <li className="d-inline-block mr-3">
-                                        <span className="fas fa-clock text-primary"></span>
-                                        <a className="ml-1" href="#">24 April, 2016</a>
-                                    </li>
-                                    <li className="d-inline-block">
-                                        <span className="fas fa-list-alt text-primary"></span>
-                                        <a className="ml-1" href="#">Photography</a>
-                                    </li>
-                                </ul>
-                                <h2 className="card-title">
-                                    <a className="text-white opacity-75-onHover" href="#!">Aliquip excepteur
-                                        cilludm irure laboris sint ea qui ex amet id. Ex nulla etno</a>
-                                </h2>
-                                {/* <a href="#!" className="btn btn-primary">Voir plus <img
-                                    src="images/arrow-right.png" alt="" /></a> */}
+                    <div className="col-lg-8">
+                        {/* post */}
+                        {posts && posts.map((post) => (
+                            <div className="card post-item bg-transparent border-0 mb-3" key={post.id}>
+                                <Link to={`/${post.categories[0].slug}/${post.slug}`}>
+                                    <img className="card-img-top rounded-0" src={`${process.env.REACT_APP_BASE_URL_WITHOUT_API}/uploads/posts/picture/${post.picture}`} alt="" />
+                                </Link>
+                                <div className="card-body px-0">
+                                    <ul className="post-meta mb-2">
+                                        <li className="d-inline-block mr-3">
+                                            <span className="fas fa-clock text-primary"></span>
+                                            <a className="ml-1" href="#">{new Date(post.created_at).toLocaleDateString('fr-FR', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric',
+                                            })}</a>
+                                        </li>
+                                        <li className="d-inline-block">
+                                            <span className="fas fa-list-alt text-primary"></span>
+                                            <Link className="ml-1" to={`/${post.categories[0].slug}`}>{post.categories[0].name}</Link>
+                                        </li>
+                                    </ul>
+                                    <h2 className="card-title">
+                                        <Link className="text-white opacity-75-onHover" to={`/${post.categories[0].slug}/${post.slug}`}>{post.title}</Link>
+                                    </h2>
+                                </div>
                             </div>
-                        </div>
+                        ))}
+                        {/* end post */}
                     </div>
                     <div className="col-lg-4 col-md-5">
                         <div className="widget text-center">
@@ -96,25 +113,17 @@ function Home() {
                             </ul>
                         </div>
 
+                        <Newsletter />
                         <div className="widget bg-dark p-4 text-center">
                             <h2 className="widget-title text-white d-inline-block mt-4">Catégories</h2>
                             <div className="form-group mt-4 categories">
                                 {categories.map((category) => (
-                                    <Link to={category.slug} key={category.id}>
-                                        <button className="btn btn-dark">
-                                            {category.name}
-                                            <img src="images/arrow-right.png" alt="" />
-                                        </button>
+                                    <Link to={`/${category.slug}`} key={category.id} className="btn btn-dark">
+                                        {category.name}
                                     </Link>
                                 ))}
                             </div>
                         </div>
-
-                        <Newsletter />
-
-
-
-
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ function SideNav() {
         <aside>
             <div className="sidenav position-sticky d-flex flex-column justify-content-between">
                 <Link className="navbar-brand logo" to="/" alt="logo">
-                    <img src="images/playstation-logo-colour.svg" alt="" />
+                    <img src="/images/playstation-logo-colour.svg" alt="" />
                 </Link>
 
                 <div className="navbar navbar-dark my-4 p-0 font-primary">
