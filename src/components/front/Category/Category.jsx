@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Home from '../Home/Home';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import Footer from '../Footer/Footer';
 
 function Category() {
     const { slugCategory } = useParams();
@@ -164,6 +165,8 @@ function Category() {
                     </div> */}
                     </div>
                 </div>
+            <Footer />
+
             </div>
         ) 
     )

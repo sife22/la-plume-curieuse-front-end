@@ -5,25 +5,13 @@ import axios from 'axios'
 import './Home.css'
 import { Link } from 'react-router-dom'
 import TextTruncate from 'react-text-truncate'
+import Founder from '../Founder/Founder'
+import Categories from '../Categories/Categories'
 
 function Home() {
-    const [categories, setCategories] = useState([]);
+
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        console.log(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`);
-
-        axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            }
-        }).then((response) => {
-            console.log(response.data.categories);
-            setCategories(response.data.categories);
-        }).catch((error) => {
-            console.log(error);
-        })
-
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
             headers: {
                 "Accept": "application/json",
@@ -36,6 +24,7 @@ function Home() {
             console.log(error);
         })
     }, [])
+
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">
@@ -75,20 +64,24 @@ function Home() {
                                                 day: 'numeric',
                                             })}</a>
                                         </li>
-                                        <li className="d-inline-block">
+                                        <li className="d-inline-block mr-3">
                                             <span className="fas fa-list-alt text-primary"></span>
                                             <Link className="ml-1" to={`/${post.categories[0].slug}`}>{post.categories[0].name}</Link>
+                                        </li>
+                                        <li className="d-inline-block mr-3">
+                                            <span className="fas fa-eye text-primary"></span>
+                                            <span className="ml-1 text-white">{post.views}</span>
                                         </li>
                                     </ul>
                                     <h2 className="card-title">
                                         <Link className="text-white opacity-75-onHover" to={`/${post.categories[0].slug}/${post.slug}`}>{post.title}</Link>
                                         <TextTruncate
-                                         className="text-secondary"
-                                         line={3}
-                                         element="h4"
-                                         truncateText="…"
-                                         text={post.summary}
-                                         />
+                                            className="text-secondary"
+                                            line={3}
+                                            element="h4"
+                                            truncateText="…"
+                                            text={post.summary}
+                                        />
                                     </h2>
                                 </div>
                             </div>
@@ -96,42 +89,9 @@ function Home() {
                         {/* end post */}
                     </div>
                     <div className="col-lg-4 col-md-5">
-                        <div className="widget text-center">
-                            <img className="author-thumb-sm rounded-circle d-block mx-auto" src="images/profile.jpg"
-                                alt="" />
-                            <h2 className="widget-title text-white d-inline-block mt-4">Le créateur</h2>
-                            <p className="mt-4">Sif eddine HADI, Lorem ipsum dolor sit coectetur adiing elit. Tincidunfywjt
-                                leo mi, viearra urna. Arcu ve isus, condimentum ut vulpate cursus por turpis.</p>
-                            <ul className="list-inline mt-3">
-                                <li className="list-inline-item">
-                                    <a href="#!" className="text-white text-primary-onHover p-2">
-                                        <span className="fab fa-twitter"></span>
-                                    </a>
-                                </li>
-                                <li className="list-inline-item">
-                                    <a href="#!" className="text-white text-primary-onHover p-2">
-                                        <span className="fab fa-linkedin-in"></span>
-                                    </a>
-                                </li>
-                                <li className="list-inline-item">
-                                    <a href="#!" className="text-white text-primary-onHover p-2">
-                                        <span className="fab fa-github"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
+                        <Founder />
                         <Newsletter />
-                        <div className="widget bg-dark p-4 text-center">
-                            <h2 className="widget-title text-white d-inline-block mt-4">Catégories</h2>
-                            <div className="form-group mt-4 categories">
-                                {categories.map((category) => (
-                                    <Link to={`/${category.slug}`} key={category.id} className="btn btn-dark">
-                                        {category.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
+                        <Categories />
                     </div>
                 </div>
             </div>

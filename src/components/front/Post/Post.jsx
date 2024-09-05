@@ -3,8 +3,14 @@ import Newsletter from '../Newsletter/Newsletter'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import Footer from '../Footer/Footer';
+import Heart from 'react-heart';
+import Categories from '../Categories/Categories';
 
 function Post() {
+    const [active, setActive] = useState(false)
+    const [views, setViews] = useState([]);
+
     const [categories, setCategories] = useState([]);
     const { slugPost } = useParams();
     const [error404, setError404] = useState(false)
@@ -14,6 +20,17 @@ function Post() {
     useEffect(() => {
         // console.log(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-post/${slugPost}-${idPost}`);
         console.log(slugPost);
+
+        axios.put(`${process.env.REACT_APP_BASE_URL_WITH_API}/add-view/${slugPost}`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        }).then((response) => {
+            setViews(response.data.post.views); console.log(response.data.post.views);
+        }
+        ).catch((error) => console.log(error)
+        )
 
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
             headers: {
@@ -77,6 +94,14 @@ function Post() {
                         <h1 className="text-white add-letter-space mt-4">{post?.title}</h1>
                         <h3 className="text-white add-letter-space mt-4">{post?.summary}</h3>
                         <ul className="post-meta mt-3 mb-4">
+                            {/* <div style={{ width: "1.5rem" }} className='d-inline-block mr-3'>
+                                <Heart isActive={active} onClick={() => setActive(!active)} animationTrigger="both" inactiveColor="rgba(255,125,125,.75)" activeColor="red" animationDuration={0.1} />
+                            </div>
+                            <li className="d-inline-block mr-3">
+                                <span className="fas fa-heart text-primary"></span>
+                                <span className="ml-1">22</span>
+                            </li> */}
+
                             <li className="d-inline-block mr-3">
                                 <span className="fas fa-clock text-primary"></span>
                                 <a className="ml-1" href='#!'>{new Date(post?.created_at).toLocaleDateString('fr-FR', {
@@ -85,7 +110,7 @@ function Post() {
                                     day: 'numeric',
                                 })}</a>
                             </li>
-                            <li className="d-inline-block">
+                            <li className="d-inline-block mr-3">
                                 <span className="fas fa-list-alt text-primary"></span>
                                 {post.categories && post.categories.length > 0 ? (
                                     <Link className="ml-1" to={`/${post.categories[0].slug}`}>{post.categories[0].name}</Link>
@@ -93,25 +118,24 @@ function Post() {
                                     <span className="ml-1"></span>
                                 )}
                             </li>
+                            <li className="d-inline-block mr-3">
+                                <span className="fas fa-eye text-primary"></span>
+                                <span className="ml-1 text-white">{views ? views : ''}</span>
+                            </li>
+
+
                         </ul>
 
                         <p>{post?.content}</p>
                     </div>
                     <div className="col-lg-4 col-md-5">
                         <Newsletter />
-                        <div className="widget bg-dark p-4 text-center">
-                            <h2 className="widget-title text-white d-inline-block mt-4">Catégories</h2>
-                            <div className="form-group mt-4 categories">
-                                {categories.map((category) => (
-                                    <Link to={`/${category.slug}`} key={category.id} className="btn btn-dark">
-                                        {category.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
+                        <Categories />
                     </div>
                 </div>
             </div>
+            <Footer />
+
         </div>
     )
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
+import Newsletter from '../Newsletter/Newsletter';
 
 function About() {
-  return (
-    <div className="main-content">
+    return (
+        <div className="main-content">
             <header className="mobile-nav pt-4">
                 <div className="container">
                     <div className="row align-items-center">
@@ -22,9 +23,9 @@ function About() {
             </header>
             <div className="nav-toggle-overlay"></div>
             <div className="container py-4 my-5">
-                
+
                 <div className="row">
-                    <div className="col-md-9">
+                    <div className="col-md-8">
                         <img className="img-fluid" src="images/author.JPG" alt="" width="100%" height="100px" />
                         <h1 className="text-white add-letter-space my-4">Hi,I’m Sif eddine HADI, Software Developer</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus cum cursus nunc nec velit
@@ -78,11 +79,14 @@ function About() {
                             </li>
                         </ul>
                     </div>
+                    <div className="col-md-4">
+                        <Newsletter />
+                    </div>
                 </div>
             </div>
             <Footer />
         </div>
-  )
+    )
 }
 
 export default About

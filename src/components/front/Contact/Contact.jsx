@@ -1,5 +1,7 @@
 import React from 'react'
 import Footer from '../Footer/Footer'
+import Categories from '../Categories/Categories'
+import Newsletter from '../Newsletter/Newsletter'
 
 function Contact() {
     return (
@@ -24,7 +26,7 @@ function Contact() {
 
             <div className="container py-4 my-5">
                 <div className="row">
-                    <div className="col-md-10">
+                    <div className="col-md-8">
                         <div className="contact-form bg-dark">
                             <h1 className="text-white add-letter-space mb-5">Contactez-nous</h1>
                             <form method="POST" className="needs-validation" novalidate>
@@ -83,6 +85,12 @@ function Contact() {
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div className="col-md-4">
+                        <Categories />
+                    </div>
+                    <div className="col-md-12 mt-5">
+                        <Newsletter />
                     </div>
                 </div>
             </div>
