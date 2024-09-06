@@ -12,7 +12,7 @@ function Home() {
 
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        if(posts.length === 0){
+        if (posts.length === 0) {
             axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
                 headers: {
                     "Accept": "application/json",
@@ -63,6 +63,8 @@ function Home() {
                                                 year: 'numeric',
                                                 month: 'long',
                                                 day: 'numeric',
+                                                hour: 'numeric',
+                                                minute: 'numeric'
                                             })}</a>
                                         </li>
                                         <li className="d-inline-block mr-3">

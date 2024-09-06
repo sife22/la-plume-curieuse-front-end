@@ -57,7 +57,7 @@ function Category() {
 
 
     return (
-        error404 ? (<ErrorPage />) : (
+        error404 ? (<div></div>) : (
             <div className="main-content" >
                 <header className="mobile-nav pt-4">
                     <div className="container">
