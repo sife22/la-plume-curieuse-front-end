@@ -27,55 +27,30 @@ function About() {
                 <div className="row">
                     <div className="col-md-8">
                         <img className="img-fluid" src="images/author.JPG" alt="" width="100%" height="100px" />
-                        <h1 className="text-white add-letter-space my-4">Hi,I’m Sif eddine HADI, Software Developer</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus cum cursus nunc nec velit
-                            volutpat consequat. Vitae dui, massa viverra nam dui laoreet ipsum. Sagittis sed feugiat
-                            blandit adipiscing mauris. Facilisis dictum in tellus ac turpis. Pretium, facilisis turpis
-                            duis pulvinar blandit est. Dolor accumsan pellentesque ullamcorper volutpat urna arcu. Nisi
-                            nulla et mauris et, ultricies odio semper gravida. Justo, lorem leo ullamcorper leo ornare
-                            phasellus. Dolor tristique sem quam eget tempor aliquet sem amet, eget. Vitae id mattis
-                            consectetur gravida sit lorem donec. Phasellus enim sodales congue varius arcu et, pulvinar
-                            ultrices. Faucibus nulla massa erat ut. Egestas integer pharetra proin pellentesque tellus
-                            quis pulvinar mauris. Sed quisque pellentesque platea vel. Proin felis tellus nunc risus
-                            tortor, nibh. Vulputate mauris fermentum tincidunt diam sed. Vel interdum nisl, pellentesque
-                            ante consectetur. At praesent lorem placerat nibh nunc. Massa lectus id et amet quam
-                            venenatis, in mus. Arcu cras risus est porttitor tincidunt posuere feugiat. Sem velit ornare
-                            id duis Amet nullam eget mus diam nisl, vel. Sed at id quam bibendum lacus felis. Porta
-                            arcu, nunc ultricies</p>
-                        <h2 className="text-white add-letter-space my-5">Title 1</h2>
-                        <ul className="list-unstyled">
+                        <h1 className="text-white add-letter-space my-4">Salut, je suis Sif eddine HADI, Développeur Logiciels</h1>
+                        <p>Je suis un développeur full-stack passionné, avec une solide expérience en design et développement d’applications web, j’ai eu l’occasion de travailler sur divers projets, allant des sites web corporatifs aux applications SaaS, en passant par des prototypes innovants. Mon approche de la résolution des problèmes et mon esprit d’équipe m’ont permis de contribuer avec succès au développement de solutions sur mesure répondant aux besoins spécifiques des clients.</p>
+                        <ul className="list-unstyled my-5">
                             <li className="bullet-list-item mb-4">
-                                <h3 className="text-white mb-3 add-letter-space">Title</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros,
-                                    ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa
-                                    gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in
-                                    curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie
-                                    urna eu tortor erat.</p>
+                                <h3 className="text-white mb-3 add-letter-space">La Plume Curieuse</h3>
+                                <p>Ce projet est une plateforme de blogs au but de partager nos idées, informations, cultures et nos croyances.
+                                </p>
                             </li>
                             <li className="bullet-list-item mb-4">
-                                <h3 className="text-white mb-3 add-letter-space">Title
+                                <h3 className="text-white mb-3 add-letter-space">Technologies
                                 </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros,
-                                    ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa
-                                    gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in
-                                    curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie
-                                    urna eu tortor erat.</p>
-                            </li>
-                            <li className="bullet-list-item mb-4">
-                                <h3 className="text-white mb-3 add-letter-space">Title</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros,
-                                    ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa
-                                    gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in
-                                    curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie
-                                    urna eu tortor erat.</p>
-                            </li>
-                            <li className="bullet-list-item">
-                                <h3 className="text-white mb-3 add-letter-space">Title 2</h3>
-                                <ol className="pl-0">
-                                    <li className="mb-2">Title</li>
-                                    <li className="mb-2">Title</li>
-                                    <li className="mb-2">Title</li>
-                                </ol>
+                                <p>Les technologies suivantes ont été utilisées pour la réalisation de cette plateforme : </p>
+                                <li className="bullet-list-item mt-4">
+                                    <h4 className="text-white mb-3 add-letter-space">Front End</h4>
+                                    <p>En utilisant le framework <strong><u>ReactJs</u></strong>, j'ai amélioré le Front-End de cette application pour la rendre plus dynamique, inovante et plus conviviale pour l'expérience utilisateur.</p>
+                                </li>
+                                <li className="bullet-list-item mt-4">
+                                    <h4 className="text-white mb-3 add-letter-space">Back End</h4>
+                                    <p>Grâce à <strong><u>Laravel</u></strong>, j'ai développé le Back End de LPC, un framework qui nous donne toutes les fonctionnalités requises pour concevoir une application web complète pour tous les cas d'utilisation.</p>
+                                </li>
+                                <li className="bullet-list-item mt-4">
+                                    <h4 className="text-white mb-3 add-letter-space">Base de données</h4>
+                                    <p><strong><u>MySQL</u></strong> : la base de données la très reconnue et largement utilisée au niveau mondiale.</p>
+                                </li>
                             </li>
                         </ul>
                     </div>
