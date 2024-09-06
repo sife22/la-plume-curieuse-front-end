@@ -12,17 +12,18 @@ function Home() {
 
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            }
-        }).then((response) => {
-            console.log(response.data.posts);
-            setPosts(response.data.posts);
-        }).catch((error) => {
-            console.log(error);
-        })
+        if(posts.length === 0){
+            axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                }
+            }).then((response) => {
+                setPosts(response.data.posts);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
     }, [])
 
     return (
@@ -74,14 +75,8 @@ function Home() {
                                         </li>
                                     </ul>
                                     <h2 className="card-title">
-                                        <Link className="text-white opacity-75-onHover" to={`/${post.categories[0].slug}/${post.slug}`}>{post.title}</Link>
-                                        <TextTruncate
-                                            className="text-secondary"
-                                            line={3}
-                                            element="h4"
-                                            truncateText="…"
-                                            text={post.summary}
-                                        />
+                                        <Link className="text-white opacity-75-onHover" to={`/${post.categories[0].slug}/${post.slug}`}>{post.title.slice(0, 50)}...</Link>
+                                        <p className="span">{post.summary.slice(0, 100)}...</p>
                                     </h2>
                                 </div>
                             </div>

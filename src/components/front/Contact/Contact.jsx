@@ -26,14 +26,17 @@ function Contact() {
 
             <div className="container py-4 my-5">
                 <div className="row">
+                    <div className="col-md-12 mb-5">
+                        <Newsletter />
+                    </div>
                     <div className="col-md-8">
                         <div className="contact-form bg-dark">
                             <h1 className="text-white add-letter-space mb-5">Contactez-nous</h1>
-                            <form method="POST" className="needs-validation" novalidate>
+                            <form className="needs-validation" noValidate>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group mb-5">
-                                            <label for="firstName" className="text-black-300">Nom</label>
+                                            <label htmlFor="firstName" className="text-black-300">Nom</label>
                                             <input type="text" id="firstName"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 placeholder="John" required />
@@ -42,7 +45,7 @@ function Contact() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group mb-5">
-                                            <label for="lastName" className="text-black-300">Prénom</label>
+                                            <label htmlFor="lastName" className="text-black-300">Prénom</label>
                                             <input type="text" id="lastName"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 placeholder="Doe" required />
@@ -51,7 +54,7 @@ function Contact() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group mb-5">
-                                            <label for="email" className="text-black-300">Email</label>
+                                            <label htmlFor="email" className="text-black-300">Email</label>
                                             <input type="email" id="email"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 placeholder="johndoe@gmail.com" required />
@@ -70,7 +73,7 @@ function Contact() {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-group mb-5">
-                                            <label for="message" className="text-black-300">Votre message</label>
+                                            <label htmlFor="message" className="text-black-300">Votre message</label>
                                             <textarea name="message"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 placeholder="Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem"
@@ -89,9 +92,7 @@ function Contact() {
                     <div className="col-md-4">
                         <Categories />
                     </div>
-                    <div className="col-md-12 mt-5">
-                        <Newsletter />
-                    </div>
+
                 </div>
             </div>
             <Footer />

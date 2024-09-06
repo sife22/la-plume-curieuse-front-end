@@ -18,16 +18,13 @@ function Post() {
 
 
     useEffect(() => {
-        // console.log(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-post/${slugPost}-${idPost}`);
-        console.log(slugPost);
-
         axios.put(`${process.env.REACT_APP_BASE_URL_WITH_API}/add-view/${slugPost}`, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             }
         }).then((response) => {
-            setViews(response.data.post.views); console.log(response.data.post.views);
+            setViews(response.data.post.views);
         }
         ).catch((error) => console.log(error)
         )
@@ -38,7 +35,6 @@ function Post() {
                 "Content-Type": "application/json",
             }
         }).then((response) => {
-            console.log(response.data.categories);
             setCategories(response.data.categories);
         }).catch((error) => {
             console.log(error);
@@ -51,7 +47,6 @@ function Post() {
             }
         }).then((response) => {
             setPost(response.data.post)
-            console.log(response);
         }).catch((error) => {
             if (error.status === 404) {
                 setError404(true)

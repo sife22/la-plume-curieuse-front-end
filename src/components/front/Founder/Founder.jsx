@@ -3,7 +3,7 @@ import React from 'react'
 function Founder() {
     return (
         <div className="widget text-center">
-            <img className="author-thumb-sm rounded-circle d-block mx-auto" src="images/profile.jpg"
+            <img className="author-thumb-sm rounded-circle d-block mx-auto" src="https://www.shutterstock.com/image-vector/green-crocodile-logo-negative-space-600nw-2090081440.jpg"
                 alt="" />
             <h2 className="widget-title text-white d-inline-block mt-4">Le créateur</h2>
             <p className="mt-4">Sif eddine HADI, LPC est votre plume curieuse, vous pouvez trouver tout ce qui vous intéresse, c'est l'endroit idéal pour partager nos idées dans tous les domaines.

@@ -12,10 +12,8 @@ function Categories() {
                 "Content-Type": "application/json",
             }
         }).then((response) => {
-            console.log(response.data.categories);
             setCategories(response.data.categories);
         }).catch((error) => {
-            console.log(error);
         })
     }, [])
 

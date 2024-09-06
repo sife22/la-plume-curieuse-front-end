@@ -32,8 +32,6 @@ function Login() {
                 "Content-Type": "application/json",
             }
         }).then((response) => {
-
-            console.log(response);
             dispatch(login({
                 'name': response.data.user.name,
                 'username': response.data.user.username,
@@ -47,13 +45,10 @@ function Login() {
             navigate('/dashboard');
         }).catch((error) => {
             setLoading(false)
-
             if (error.status === 401) {
-                console.log(error.response.data.message);
                 setErrors([]);
                 setError(error.response.data.message);
             } else if (error.status === 422) {
-                console.log(error.response.data.errors);
                 setError(null);
                 setErrors(error.response.data.errors);
             }
@@ -88,11 +83,11 @@ function Login() {
                     <div className="col-md-11">
                         <div className="contact-form bg-dark">
                             <h1 className="text-white add-letter-space mb-5">Se connecter</h1>
-                            <form className="needs-validation" novalidate>
+                            <form className="needs-validation" noValidate>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group mb-2">
-                                            <label for="email" className="text-black-300">Email</label>
+                                            <label htmlFor="email" className="text-black-300">Email</label>
                                             <input type="email" id="email"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 required onChange={(e) => setEmail(e.target.value)} />
@@ -102,7 +97,7 @@ function Login() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group mb-2">
-                                            <label for="password" className="text-black-300">Mot de passe</label>
+                                            <label htmlFor="password" className="text-black-300">Mot de passe</label>
                                             <input type="password" id="password"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 required onChange={(e) => setPassword(e.target.value)} />
