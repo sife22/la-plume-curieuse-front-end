@@ -6,6 +6,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import Footer from '../Footer/Footer';
 import './Post.css';
 import Categories from '../Categories/Categories';
+import FlipMove from 'react-flip-move';
 
 function Post() {
     const [active, setActive] = useState(false)
@@ -100,7 +101,7 @@ function Post() {
             }
         }).then((response) => {
             console.log(response);
-            
+
             setComments(response.data.comments)
         }).catch((error) => {
             if (error.status === 404) {
@@ -183,10 +184,13 @@ function Post() {
                         <div className="widget bg-dark p-4 text-center">
                             <h2 className="widget-title text-white d-inline-block mt-4">Commentaires</h2>
                             <div className="form-group mt-4 comments">
-                                {comments.length !== 0 && comments.map((item)=>(
-                                    <p className="btn btn-dark comment mb-2"><span><u>{item.author_name}</u> : </span>{item.content}
-                                    </p>
-                                ))}
+                                <FlipMove>
+                                    {comments.length !== 0 && comments.map((item) => (
+                                        <p className="btn btn-dark comment mb-2"><span><u>{item.author_name}</u> : </span>{item.content}
+                                        </p>
+
+                                    ))}
+                                </FlipMove>
                             </div>
                         </div>
                     </div>
