@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { Editor } from '@tinymce/tinymce-react';
+
 
 function AddPost() {
     const state = useSelector((state) => state.auth.value);
@@ -135,11 +137,35 @@ function AddPost() {
                                     <div className="col-md-12">
                                         <div className="form-group mb-2">
                                             <label for="content" className="text-black-300">Contenu</label>
-                                            <textarea name="content" id="content"
+                                            <Editor
+                                                apiKey='odjod7b9ev49934ntonrw0oqnostx31tenifmpp3ep7z2yev'
+                                                init={{
+                                                    plugins: [
+                                                        // Core editing features
+                                                        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'searchreplace',  'visualblocks', 'wordcount',
+                                                        // Your account includes a free trial of TinyMCE premium features
+                                                        // Try the most popular premium features until Sep 20, 2024:
+                                                        //  'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'mentions', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+                                                    ],
+                                                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                                    tinycomments_mode: 'embedded',
+                                                    menubar: '',
+                                                    tinycomments_author: 'Author name',
+                                                    mergetags_list: [
+                                                        { value: 'First.Name', title: 'First Name' },
+                                                        { value: 'Email', title: 'Email' },
+                                                    ],
+                                                    // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+                                                }}
+                                                initialValue="Write whatever you want..."
+                                                onChange={(e)=>setContent(e.target.getContent())}
+
+                                            />
+                                            {/* <textarea name="content" id="content"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 required onChange={(e) => setContent(e.target.value)}
                                             >
-                                            </textarea>
+                                            </textarea> */}
                                             <p className={`text-warning ${!errors.content && 'invisible'}`}>{errors.content ? errors.content[0] : 'Feedback'}</p>
                                         </div>
                                     </div>
@@ -148,7 +174,7 @@ function AddPost() {
                                     <div className="col-md-12 mt-3">
                                         <button type="submit" className="btn btn-sm btn-primary" onClick={handleStore} disabled={loading}> {loading ? 'Chargement...' : 'Ajouter'} <img
                                             src="images/arrow-right.png" alt="" /></button>
-                                    <Link to="/dashboard"><button type="button" className="btn btn-sm btn-primary" disabled={loading}>Annuler </button></Link>
+                                        <Link to="/dashboard"><button type="button" className="btn btn-sm btn-primary" disabled={loading}>Annuler </button></Link>
 
                                         <p className="text-danger mt-3"></p>
                                     </div>

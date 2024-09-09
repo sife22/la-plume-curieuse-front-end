@@ -176,7 +176,7 @@ function Post() {
 
                         </ul>
 
-                        <p>{post?.content} {post?.content} {post?.content} {post?.content} {post?.content} {post?.content} {post?.content}</p>
+                        <div dangerouslySetInnerHTML={{ __html: post?.content}} className='text-white' />
                     </div>
                     <div className="col-lg-4 col-md-5">
                         <Newsletter />
