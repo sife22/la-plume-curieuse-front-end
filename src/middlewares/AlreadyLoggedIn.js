@@ -12,6 +12,7 @@ function AlreadyLoggedIn({children}) {
         return <Navigate to="/dashboard" replace />
     }
 
+    // Sinon, on retourne la destination souhaitée
     return children
 
 }

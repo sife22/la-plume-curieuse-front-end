@@ -14,14 +14,31 @@ import ScrollToTop from './ScrollToTop';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    {/* Initialisation de store Redux Tool Kit */}
     <Provider store={store}>
+
+      {/* Initialisation de package Redux Persist */}
       <PersistGate loading={null} persistor={persistor}>
+
+        {/* Initialisation de Routage React Rooter DOM */}
         <BrowserRouter>
+
+        {/* Ce composant est utilisé pour maintenir le scroll en haut des pages. */}
           <ScrollToTop>
+
+            {/* Notre App */}
             <App />
+
+
           </ScrollToTop>
+
+
         </BrowserRouter>
+
+
       </PersistGate>
+
+      
     </Provider>
   </React.StrictMode>
 );

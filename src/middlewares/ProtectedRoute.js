@@ -10,6 +10,7 @@ function ProtectedRoute({ children }) {
         return <Navigate to="/connexion" replace />
     }
 
+    // Sinon, on retourne la destination autorisée
     return children
 }
 

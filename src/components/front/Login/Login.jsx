@@ -7,23 +7,26 @@ import Footer from '../Footer/Footer';
 
 
 function Login() {
+    const navigate = useNavigate();
 
     // On crée les variables pour stocker les valeurs (email, password)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     // On crée les variables pour gérer les erreurs
+        // L'erreur de l'autorisation
     const [error, setError] = useState('');
+
+        // Les erreurs de validations
     const [errors, setErrors] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
-    // On crée une instance de useDispatch
+    // On crée une instance de useDispatch pour déclencher les fonctions souhaitées
     const dispatch = useDispatch();
 
-    // On crée la fonction pour gérer login
+    // Connexion
     const handleLogin = (e) => {
-        
         e.preventDefault();
         setLoading(true)
         axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/login`, { email, password }, {
@@ -32,6 +35,8 @@ function Login() {
                 "Content-Type": "application/json",
             }
         }).then((response) => {
+            
+            // On déclenche la fonction login définie sur authSlice
             dispatch(login({
                 'name': response.data.user.name,
                 'username': response.data.user.username,
@@ -55,9 +60,6 @@ function Login() {
         })
     }
 
-    const navigate = useNavigate();
-
-
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">
@@ -65,7 +67,7 @@ function Login() {
                     <div className="row align-items-center">
                         <div className="col-6">
                             <a href="index.html">
-                                <img src="images/logo.png" alt="" />
+                                <img src="/images/logo.png" alt="" />
                             </a>
                         </div>
                         <div className="col-6 text-right">
@@ -108,7 +110,7 @@ function Login() {
 
                                     <div className="col-md-12">
                                         <button type="button" onClick={handleLogin} className="btn btn-sm btn-primary" disabled={loading}>{loading ? 'Chargement...' : 'Se connecter'} {!loading ? <img
-                                            src="images/arrow-right.png" alt="" /> : ''}</button>
+                                            src="/images/arrow-right.png" alt="" /> : ''}</button>
                                         {error && (<p className="text-danger mt-3">{error}</p>)}
                                     </div>
                                 </div>
@@ -118,7 +120,6 @@ function Login() {
                 </div>
             </div>
             <Footer />
-
         </div>
     )
 }

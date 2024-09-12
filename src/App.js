@@ -25,6 +25,7 @@ function App() {
   return (
     <div className="app">
       <Routes>
+        {/* Public */}
         <Route path='/' element={<AlreadyLoggedIn><Layout /></AlreadyLoggedIn>}>
           <Route index element={<Home />} />
           <Route path='/qui-somme-nous' element={<About />} />
@@ -35,8 +36,13 @@ function App() {
           <Route path='/:slugCategory' element={<Category />} />
           <Route path='*' element={<ErrorPage />} />
         </Route>
+        {/* End Public */}
+
+        {/* Admin */}
         <Route path='/dashboard' element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+          {/* Dashboard */}
           <Route index element={<AdminHome />} />
+          {/* End Dashboard */}
           {/* Category */}
           <Route path='/dashboard/articles' element={<Posts />} />
           <Route path='/dashboard/categories' element={<Categories />} />
@@ -47,9 +53,15 @@ function App() {
           <Route path='/dashboard/ajouter-article' element={<AddPost />} />
           <Route path='/dashboard/modifier-article/:slugPost' element={<UpdatePost />} />
           {/* End Post */}
+          {/* Newsletter */}
           <Route path='/dashboard/emails' element={<AdminNewsletter />} />
+          {/* End Newsletter */}
         </Route>
+        {/* End Admin */}
+
+        {/* 404 */}
         <Route path='*' element={<ErrorPage />} />
+        {/* End 404 */}
       </Routes>
     </div>
   );
