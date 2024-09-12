@@ -18,6 +18,8 @@ import Category from './components/front/Category/Category';
 import UpdateCategory from './components/admin/Category/UpdateCategory';
 import AddPost from './components/admin/Post/AddPost';
 import Post from './components/front/Post/Post';
+import Posts from './components/admin/Post/Posts';
+import UpdatePost from './components/admin/Post/UpdatePost';
 
 function App() {
   return (
@@ -36,12 +38,14 @@ function App() {
         <Route path='/dashboard' element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route index element={<AdminHome />} />
           {/* Category */}
+          <Route path='/dashboard/articles' element={<Posts />} />
           <Route path='/dashboard/categories' element={<Categories />} />
           <Route path='/dashboard/ajouter-categorie' element={<AddCategory />} />
           <Route path='/dashboard/modifier-categorie/:slugCategory' element={<UpdateCategory />} />
           {/* End Category */}
           {/* Post */}
           <Route path='/dashboard/ajouter-article' element={<AddPost />} />
+          <Route path='/dashboard/modifier-article/:slugPost' element={<UpdatePost />} />
           {/* End Post */}
           <Route path='/dashboard/emails' element={<AdminNewsletter />} />
         </Route>

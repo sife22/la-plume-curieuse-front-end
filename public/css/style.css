@@ -679,13 +679,13 @@ ul, li {
   border: 0;
   color: #aaa;
   border-color: #333139 !important;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 .contact-form .form-control:focus {
   border-color: #888888 !important;
 }
 .contact-form select {
-  padding-bottom: 16px;
+  /* padding-bottom: 16px; */
   color: #aaa;
   padding-right: 15px;
   background-color: transparent;

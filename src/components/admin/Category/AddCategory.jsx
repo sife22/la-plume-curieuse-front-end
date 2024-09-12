@@ -12,6 +12,7 @@ function AddCategory() {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [error, setError] = useState('');
 
     const handleStore = (e) => {
         e.preventDefault();
@@ -33,7 +34,9 @@ function AddCategory() {
             if (error.status === 422) {
                 console.log(error);
                 setErrors(error.response.data.errors);
-            } else {
+            } else if (error.status === 400) {
+                setError(error.response.data.message);
+            } else  {
                 console.log(error);
             }
         })
@@ -96,6 +99,7 @@ function AddCategory() {
                                     </div>
                                     <div className="col-md-12">
                                         {message && <h2 className="text-success mt-3">{message}</h2>}
+                                        {error && <h2 className="text-danger mt-3">{error}</h2>}
                                     </div>
                                 </div>
                             </form>

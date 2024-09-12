@@ -6,6 +6,7 @@ import { Editor } from '@tinymce/tinymce-react';
 
 
 function AddPost() {
+
     const state = useSelector((state) => state.auth.value);
     const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
@@ -16,7 +17,6 @@ function AddPost() {
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
     const [message, setMessage] = useState('');
-
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -142,7 +142,7 @@ function AddPost() {
                                                 init={{
                                                     plugins: [
                                                         // Core editing features
-                                                        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'searchreplace',  'visualblocks', 'wordcount',
+                                                        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'searchreplace', 'visualblocks', 'wordcount',
                                                         // Your account includes a free trial of TinyMCE premium features
                                                         // Try the most popular premium features until Sep 20, 2024:
                                                         //  'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'mentions', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
@@ -157,8 +157,8 @@ function AddPost() {
                                                     ],
                                                     // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
                                                 }}
-                                                initialValue="Write whatever you want..."
-                                                onChange={(e)=>setContent(e.target.getContent())}
+                                                initialValue=""
+                                                onChange={(e) => setContent(e.target.getContent())}
 
                                             />
                                             {/* <textarea name="content" id="content"

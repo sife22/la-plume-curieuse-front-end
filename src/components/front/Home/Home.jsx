@@ -8,6 +8,7 @@ import TextTruncate from 'react-text-truncate'
 import Founder from '../Founder/Founder'
 import Categories from '../Categories/Categories'
 
+
 function Home() {
 
     const [posts, setPosts] = useState([]);

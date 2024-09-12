@@ -50,8 +50,11 @@ function SideNav() {
                         </div>
 
 
-                        <li className={`nav-item ${location.pathname == '/articles' ? 'active' : ''}`}>
-                            <Link className="nav-link text-white px-0" to='/articles'>Articles</Link>
+                        <li className={`nav-item ${location.pathname == '/dashboard' ? 'active' : ''}`}>
+                            <Link className="nav-link text-white px-0" to='/dashboard'>Tableau de bord</Link>
+                        </li>
+                        <li className={`nav-item ${location.pathname == '/dashboard/articles' ? 'active' : ''}`}>
+                            <Link className="nav-link text-white px-0" to='/dashboard/articles'>Articles</Link>
                         </li>
                         <li className={`nav-item ${location.pathname == '/dashboard/ajouter-article' ? 'active' : ''}`}>
                             <Link className="nav-link text-white px-0" to='/dashboard/ajouter-article'>Ajouter article</Link>
