@@ -163,11 +163,7 @@ function UpdatePost() {
                                                 apiKey='odjod7b9ev49934ntonrw0oqnostx31tenifmpp3ep7z2yev'
                                                 init={{
                                                     plugins: [
-                                                        // Core editing features
                                                         'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'searchreplace', 'visualblocks', 'wordcount',
-                                                        // Your account includes a free trial of TinyMCE premium features
-                                                        // Try the most popular premium features until Sep 20, 2024:
-                                                        //  'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'mentions', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
                                                     ],
                                                     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
                                                     tinycomments_mode: 'embedded',
@@ -177,13 +173,11 @@ function UpdatePost() {
                                                         { value: 'First.Name', title: 'First Name' },
                                                         { value: 'Email', title: 'Email' },
                                                     ],
-                                                    // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
                                                 }}
                                                 initialValue={post && post.content}
                                                 onChange={(e) => setContent(e.target.getContent())}
                                             />
-
-                                            {/* <p className={`text-warning ${!errors.content && 'invisible'}`}>{errors.content ? errors.content[0] : 'Feedback'}</p> */}
+                                            <p className={`text-warning ${!errors.content && 'invisible'}`}>{errors.content ? errors.content[0] : 'Feedback'}</p>
                                         </div>
                                     </div>
 
@@ -196,7 +190,7 @@ function UpdatePost() {
                                             {loading ? 'Chargement...' : 'Ajouter'}
                                             <img
                                                 src="images/arrow-right.png" alt="" /></button>
-                                        <Link to="/dashboard"><button type="button" className="btn btn-sm btn-primary"
+                                        <Link to="/dashboard/articles"><button type="button" className="btn btn-sm btn-primary"
                                             disabled={loading}
                                         >Annuler </button></Link>
 

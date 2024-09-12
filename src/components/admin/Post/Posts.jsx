@@ -65,15 +65,28 @@ function Posts() {
                 </div>
 
                 <div className="row mt-5">
-                    <div className="col-md-9">
-                        {posts && posts.map((post) => (
-                            <>
-                                <span className="text-white add-letter-space mb-3">{post.title}</span> -- <Link className="text-warning" to={`/dashboard/modifier-article/${post.slug}`}>Modifier</Link>
-                                <button onClick={(e) => handleDelete(e, post.slug, post.id)}>Supprimer</button>
+                    <div className="col-md-11">
+                        <table className="table table-bordered text-center text-white table-transparent">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Titre</th>
+                                    <th scope="col">Modifier</th>
+                                    <th scope="col">Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {posts && posts.map((post) => (
+                                    <tr>
+                                        <td>{post.id}</td>
+                                        <td>{post.title}</td>
+                                        <td><Link to={`/dashboard/modifier-article/${post.slug}`} className='text-warning'>Modifier</Link></td>
+                                        <td><span className='text-danger delete' onClick={(e) => handleDelete(e, post.slug, post.id)}>Supprimer</span></td>
+                                    </tr>
+                                ))}
 
-                                <br></br>
-                            </>
-                        ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
