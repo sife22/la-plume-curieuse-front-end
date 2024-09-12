@@ -9,7 +9,7 @@ function ErrorPage() {
                     <div className="row align-items-center">
                         <div className="col-6">
                             <a href="index.html">
-                                <img src="images/logo.png" alt="" />
+                                <img src="/images/logo.png" alt="" />
                             </a>
                         </div>
                         <div className="col-6 text-right">

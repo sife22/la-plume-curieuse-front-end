@@ -11,7 +11,7 @@ function Contact() {
                     <div className="row align-items-center">
                         <div className="col-6">
                             <a href="index.html">
-                                <img src="images/logo.png" alt="" />
+                                <img src="/images/logo.png" alt="" />
                             </a>
                         </div>
                         <div className="col-6 text-right">
@@ -83,7 +83,7 @@ function Contact() {
                                     </div>
                                     <div className="col-md-12">
                                         <button type="submit" className="btn btn-sm btn-primary">Envoyer <img
-                                            src="images/arrow-right.png" alt="" /></button>
+                                            src="/images/arrow-right.png" alt="" /></button>
                                     </div>
                                 </div>
                             </form>

@@ -6,6 +6,8 @@ function Categories() {
 
     const [categories, setCategories] = useState([]);
     useEffect(() => {
+
+        // On récupère tous les catégories
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
             headers: {
                 "Accept": "application/json",
@@ -14,6 +16,7 @@ function Categories() {
         }).then((response) => {
             setCategories(response.data.categories);
         }).catch((error) => {
+            console.log(error);
         })
     }, [])
 

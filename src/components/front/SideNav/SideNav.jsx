@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import './SideNav.css';
 
 function SideNav() {
-
-
+    
+    // useLocation est utilisé pour récupérer le pathname de la page actuelle
     const location = useLocation();
 
     return (

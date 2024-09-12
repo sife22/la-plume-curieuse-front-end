@@ -10,7 +10,7 @@ function About() {
                     <div className="row align-items-center">
                         <div className="col-6">
                             <a href="index.html">
-                                <img src="images/logo.png" alt="" />
+                                <img src="/images/logo.png" alt="" />
                             </a>
                         </div>
                         <div className="col-6 text-right">
@@ -26,7 +26,7 @@ function About() {
 
                 <div className="row">
                     <div className="col-md-8">
-                        <img className="img-fluid" src="images/author.JPG" alt="" width="100%" height="100px" />
+                        <img className="img-fluid" src="/images/author.JPG" alt="" width="100%" height="100px" />
                         <h1 className="text-white add-letter-space my-4">Salut, je suis Sif eddine HADI, Développeur Logiciels</h1>
                         <p>Je suis un développeur full-stack passionné, avec une solide expérience en design et développement d’applications web, j’ai eu l’occasion de travailler sur divers projets, allant des sites web corporatifs aux applications SaaS, en passant par des prototypes innovants. Mon approche de la résolution des problèmes et mon esprit d’équipe m’ont permis de contribuer avec succès au développement de solutions sur mesure répondant aux besoins spécifiques des clients.</p>
                         <ul className="list-unstyled my-5">

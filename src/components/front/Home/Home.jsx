@@ -14,6 +14,7 @@ function Home() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         if (posts.length === 0) {
+            // On récupère tous les articles
             axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
                 headers: {
                     "Accept": "application/json",
@@ -50,7 +51,7 @@ function Home() {
             <div className="container pt-4 mt-5">
                 <div className="row justify-content-between">
                     <div className="col-lg-8">
-                        {/* post */}
+                        {/* Post */}
                         {posts && posts.map((post) => (
                             <div className="card post-item bg-transparent border-0 mb-3" key={post.id}>
                                 <Link to={`/${post.categories[0].slug}/${post.slug}`}>
@@ -84,7 +85,7 @@ function Home() {
                                 </div>
                             </div>
                         ))}
-                        {/* end post */}
+                        {/* End Post */}
                     </div>
                     <div className="col-lg-4 col-md-5">
                         <Founder />

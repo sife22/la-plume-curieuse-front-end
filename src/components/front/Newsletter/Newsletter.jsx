@@ -8,6 +8,7 @@ function Newsletter() {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
+    // On gère le clic sur le boutton, abonnez-vous 
     const handleSubscribe = (e) => {
         e.preventDefault();
         setLoading(true)
