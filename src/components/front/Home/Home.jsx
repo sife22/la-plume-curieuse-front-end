@@ -7,26 +7,48 @@ import { Link } from 'react-router-dom'
 import TextTruncate from 'react-text-truncate'
 import Founder from '../Founder/Founder'
 import Categories from '../Categories/Categories'
+import { MDBBtn } from 'mdb-react-ui-kit';
+
 
 
 function Home() {
 
     const [posts, setPosts] = useState([]);
-    useEffect(() => {
-        if (posts.length === 0) {
+    const [info, setInfo] = useState({});
+    const url = `${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`
+
+    const getPosts = (url) => {
+        // if (posts.length === 0) {
             // On récupère tous les articles
-            axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`, {
+            axios.get(url, {
                 headers: {
                     "Accept": "application/json",
                     "Content-Type": "application/json",
                 }
             }).then((response) => {
-                setPosts(response.data.posts);
+                setPosts(response.data.posts.data);
+                setInfo(response.data.posts)
+                console.log(response.data.posts);
             }).catch((error) => {
                 console.log(error);
             });
-        }
+        // }
+    }
+
+    useEffect(() => {
+        getPosts(url);
     }, [])
+
+    const handlePreviousPage = () => {
+        getPosts(info.prev_page_url)
+        window.scrollTo(0,0)
+    }
+
+    const handleNextPage = () => {
+        getPosts(info.next_page_url)
+        window.scrollTo(0,0)
+    }
+
 
     return (
         <div className="main-content">
@@ -86,6 +108,22 @@ function Home() {
                             </div>
                         ))}
                         {/* End Post */}
+                        <ul className='pagination justify-content-centre'>
+                            {info.prev_page_url ? (
+                                <li className="page-item">
+                                    <button className='btn btn-primary' onClick={handlePreviousPage}>
+                                    Précédent
+                                    </button>
+                                </li>
+                            ) : null}
+                            {info.next_page_url ? (
+                                <li className="page-item">
+                                    <button className='btn btn-primary' onClick={handleNextPage}>
+                                    Suivant
+                                    </button>
+                                </li>
+                            ) : null}
+                        </ul>
                     </div>
                     <div className="col-lg-4 col-md-5">
                         <Founder />
