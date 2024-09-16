@@ -1,8 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Home from '../Home/Home';
-import ErrorPage from '../ErrorPage/ErrorPage';
 import Footer from '../Footer/Footer';
 
 function Category() {
@@ -11,6 +9,30 @@ function Category() {
     const [categories, setCategories] = useState([]);
     const [error404, setError404] = useState(true)
     const [posts, setPosts] = useState([]);
+    const [info, setInfo] = useState({});
+
+
+    const url = `${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts/${slugCategory}`
+
+    const getPosts = (url) => {
+
+        axios.get(url, { params: { 'slugCategory': slugCategory } }, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        }).then((response) => {
+            setPosts(response.data.posts.data)
+            setInfo(response.data.posts)
+
+            setError404(false)
+        }).catch((error) => {
+            if (error.status === 404) {
+                setError404(true)
+            }
+            console.log(error);
+        });
+    }
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
@@ -38,22 +60,21 @@ function Category() {
             }
         });
 
-        axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts/${slugCategory}`, { params: { 'slugCategory': slugCategory } }, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            }
-        }).then((response) => {
-            setPosts(response.data.posts)
-            setError404(false)
-        }).catch((error) => {
-            if (error.status === 404) {
-                setError404(true)
-            }
-        });
+
+        getPosts(url);
 
 
     }, [slugCategory])
+
+    const handlePreviousPage = () => {
+        getPosts(info.prev_page_url)
+        window.scrollTo(0, 0)
+    }
+
+    const handleNextPage = () => {
+        getPosts(info.next_page_url)
+        window.scrollTo(0, 0)
+    }
 
 
     return (
@@ -89,6 +110,8 @@ function Category() {
                                             <span>/</span>
                                             <span>Catégorie</span>
                                         </div>
+                                        <hr className='hr'></hr>
+                                        <p>{category?.description}</p>
                                     </div>
                                     <div className="col-xl-6 pl-0 pl-xl-5 mt-4 mt-xl-0">
                                         <div className="categores-links text-capitalize">
@@ -132,33 +155,22 @@ function Category() {
                                 </div>
                             </div>
                         ))}
-                        {/* 
-                    <div className="col-lg-5">
-                        <div className="card post-item bg-transparent border-0 mb-5">
-                            <a href="post-details.html">
-                                <img className="card-img-top rounded-0" src="images/post/post-md/01.png" alt="" />
-                            </a>
-                            <div className="card-body px-0">
-                                <h2 className="card-title">
-                                    <a className="text-white opacity-75-onHover" href="post-details.html">Occaecat ut elit
-                                        voluptate on nisi est nisi euro occaecat</a>
-                                </h2>
-                                <ul className="post-meta mt-3 mb-4">
-                                    <li className="d-inline-block mr-3">
-                                        <span className="fas fa-clock text-primary"></span>
-                                        <a className="ml-1" href="#">24 April, 2016</a>
-                                    </li>
-                                    <li className="d-inline-block">
-                                        <span className="fas fa-list-alt text-primary"></span>
-                                        <a className="ml-1" href="#">Photography</a>
-                                    </li>
-                                </ul>
-                                <a href="post-details.html" className="btn btn-primary">Read More <img
-                                    src="images/arrow-right.png" alt="" /></a>
-                            </div>
-                        </div>
-
-                    </div> */}
+                        <ul className='pagination justify-content-centre'>
+                            {info.prev_page_url ? (
+                                <li className="page-item">
+                                    <button className='btn btn-primary' onClick={handlePreviousPage}>
+                                        Précédent
+                                    </button>
+                                </li>
+                            ) : null}
+                            {info.next_page_url ? (
+                                <li className="page-item">
+                                    <button className='btn btn-primary' onClick={handleNextPage}>
+                                        Suivant
+                                    </button>
+                                </li>
+                            ) : null}
+                        </ul>
                     </div>
                 </div>
                 <Footer />

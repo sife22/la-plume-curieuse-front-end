@@ -43,6 +43,10 @@ body.loaded {
   }
 }
 
+.hr{
+  border: 1px solid rgb(255, 93, 29);
+}
+
 .btn {
   font-size: 15px;
   padding: 10px 25px;

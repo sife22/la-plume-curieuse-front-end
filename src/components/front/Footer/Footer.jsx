@@ -22,10 +22,9 @@ function Footer() {
                     <div className="col-lg-3 col-sm-6 mb-5">
                         <h5 className="font-primary text-white mb-4">Suivez-nous</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#!">Twitter</a></li>
-                            <li><a href="#!">LinkedIn</a></li>
-                            <li><a href="#!">GitHub</a></li>
-                            <li><a href="#!">Youtube</a></li>
+                            <li><a target='_blank' href="https://x.com/sifeddinehadi">Twitter</a></li>
+                            <li><a target='_blank' href="https://www.linkedin.com/in/sif-eddine-hadi-361037233/">LinkedIn</a></li>
+                            <li><a target='_blank' href="https://github.com/sife22/">GitHub</a></li>
                         </ul>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-5">

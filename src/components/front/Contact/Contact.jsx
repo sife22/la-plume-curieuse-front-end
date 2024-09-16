@@ -82,7 +82,7 @@ function Contact() {
                                         </div>
                                     </div>
                                     <div className="col-md-12">
-                                        <button type="submit" className="btn btn-sm btn-primary">Envoyer <img
+                                        <button type="button" className="btn btn-sm btn-primary">Envoyer <img
                                             src="/images/arrow-right.png" alt="" /></button>
                                     </div>
                                 </div>
@@ -92,7 +92,6 @@ function Contact() {
                     <div className="col-md-4">
                         <Categories />
                     </div>
-
                 </div>
             </div>
             <Footer />

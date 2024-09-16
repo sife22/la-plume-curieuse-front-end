@@ -11,7 +11,7 @@ function SideNav() {
         <aside>
             <div className="sidenav position-sticky d-flex flex-column justify-content-between">
                 <Link className="navbar-brand logo" to="/" alt="logo">
-                    <img src="/images/playstation-logo-colour.svg" alt="" />
+                    <img src="/images/logo1.svg" alt="" />
                 </Link>
 
                 <div className="navbar navbar-dark my-4 p-0 font-primary">
@@ -31,26 +31,22 @@ function SideNav() {
 
                 <ul className="list-inline nml-2">
                     <li className="list-inline-item">
-                        <a href="#!" className="text-white text-red-onHover pr-2">
+                        <a href="https://x.com/sifeddinehadi" className="text-white text-primary-onHover pr-2">
                             <span className="fab fa-twitter"></span>
                         </a>
                     </li>
                     <li className="list-inline-item">
-                        <a href="#!" className="text-white text-red-onHover p-2">
-                            <span className="fab fa-facebook-f"></span>
-                        </a>
-                    </li>
-                    <li className="list-inline-item">
-                        <a href="#!" className="text-white text-red-onHover p-2">
-                            <span className="fab fa-instagram"></span>
-                        </a>
-                    </li>
-                    <li className="list-inline-item">
-                        <a href="#!" className="text-white text-red-onHover p-2">
+                        <a href="https://www.linkedin.com/in/sif-eddine-hadi-361037233/" className="text-white text-primary-onHover p-2">
                             <span className="fab fa-linkedin-in"></span>
                         </a>
                     </li>
+                    <li className="list-inline-item">
+                        <a href="https://github.com/sife22/" className="text-white text-primary-onHover p-2">
+                            <span className="fab fa-github"></span>
+                        </a>
+                    </li>
                 </ul>
+                
             </div>
         </aside>
     )

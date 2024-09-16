@@ -4,10 +4,8 @@ import Newsletter from '../Newsletter/Newsletter'
 import axios from 'axios'
 import './Home.css'
 import { Link } from 'react-router-dom'
-import TextTruncate from 'react-text-truncate'
 import Founder from '../Founder/Founder'
 import Categories from '../Categories/Categories'
-import { MDBBtn } from 'mdb-react-ui-kit';
 
 
 
@@ -15,10 +13,10 @@ function Home() {
 
     const [posts, setPosts] = useState([]);
     const [info, setInfo] = useState({});
+
     const url = `${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`
 
     const getPosts = (url) => {
-        // if (posts.length === 0) {
             // On récupère tous les articles
             axios.get(url, {
                 headers: {
@@ -32,7 +30,6 @@ function Home() {
             }).catch((error) => {
                 console.log(error);
             });
-        // }
     }
 
     useEffect(() => {
@@ -74,6 +71,7 @@ function Home() {
                 <div className="row justify-content-between">
                     <div className="col-lg-8">
                         {/* Post */}
+                        <h1 className='mb-5 text-white lato'>La Plume Curieuse</h1>
                         {posts && posts.map((post) => (
                             <div className="card post-item bg-transparent border-0 mb-3" key={post.id}>
                                 <Link to={`/${post.categories[0].slug}/${post.slug}`}>
