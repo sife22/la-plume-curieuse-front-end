@@ -5,12 +5,19 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 function AddCategory() {
+    // On récupère les données stockées dans le store (RTK).
     const state = useSelector((state) => state.auth.value);
+
     const navigate = useNavigate();
+
+    // Pour stocker les données de la catégorie.
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [message, setMessage] = useState('');
+
     const [loading, setLoading] = useState(false);
+
+    // Pour gérer les erreurs.
     const [errors, setErrors] = useState([]);
     const [error, setError] = useState('');
 
@@ -41,6 +48,7 @@ function AddCategory() {
             }
         })
     }
+
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">
@@ -60,7 +68,6 @@ function AddCategory() {
                 </div>
             </header>
             <div className="nav-toggle-overlay"></div>
-
             <div className="container py-4 my-5">
                 <div className="row">
                     <div className="col-md-11">

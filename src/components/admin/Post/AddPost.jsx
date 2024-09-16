@@ -7,16 +7,23 @@ import { Editor } from '@tinymce/tinymce-react';
 
 function AddPost() {
 
+    // On récupère les données stockées au store (RTK).
     const state = useSelector((state) => state.auth.value);
+
     const navigate = useNavigate();
+
+    // Pour gérer les données.
     const [categories, setCategories] = useState([]);
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [picture, setPicture] = useState();
     const [categoryId, setCategoryId] = useState();
     const [content, setContent] = useState('');
+
+    // Pour gérer les erreurs.
     const [errors, setErrors] = useState([]);
     const [message, setMessage] = useState('');
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -141,11 +148,7 @@ function AddPost() {
                                                 apiKey='odjod7b9ev49934ntonrw0oqnostx31tenifmpp3ep7z2yev'
                                                 init={{
                                                     plugins: [
-                                                        // Core editing features
                                                         'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'searchreplace', 'visualblocks', 'wordcount',
-                                                        // Your account includes a free trial of TinyMCE premium features
-                                                        // Try the most popular premium features until Sep 20, 2024:
-                                                        //  'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'mentions', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
                                                     ],
                                                     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
                                                     tinycomments_mode: 'embedded',
@@ -155,17 +158,11 @@ function AddPost() {
                                                         { value: 'First.Name', title: 'First Name' },
                                                         { value: 'Email', title: 'Email' },
                                                     ],
-                                                    // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
                                                 }}
                                                 initialValue=""
                                                 onChange={(e) => setContent(e.target.getContent())}
 
                                             />
-                                            {/* <textarea name="content" id="content"
-                                                className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
-                                                required onChange={(e) => setContent(e.target.value)}
-                                            >
-                                            </textarea> */}
                                             <p className={`text-warning ${!errors.content && 'invisible'}`}>{errors.content ? errors.content[0] : 'Feedback'}</p>
                                         </div>
                                     </div>

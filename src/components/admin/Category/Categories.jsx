@@ -4,7 +4,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Categories() {
+
+    // Pour stocker les catégories récupérées.
     const [categories, setCategories] = useState([]);
+
+    // On récupère les données stockées dans le store (RTK).
     const state = useSelector((state) => state.auth.value)
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
@@ -19,21 +23,7 @@ function Categories() {
             console.log(error);
         })
     }, [])
-    // const handleDelete = async (e, slug, id) => {
-    //     e.preventDefault();
-    //     axios.delete(`${process.env.REACT_APP_BASE_URL_WITH_API}/delete-category/${slug}-${id}`, {
-    //         headers: {
-    //             "Accept": "application/json",
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${state.access_token}`,
-    //         }
-    //     }).then((response) => {
-    //         console.log(response);
-    //         setCategories(categories.filter((category) => category.id !== id))
-    //     }).catch((error) => {
-    //         console.log(error);
-    //     })
-    // }
+    
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">
@@ -67,8 +57,6 @@ function Categories() {
                         {categories && categories.map((category) => (
                             <>
                                 <span className="text-white add-letter-space mb-3">{category.name}</span> -- <Link className="text-warning" to={`/dashboard/modifier-categorie/${category.slug}`}>Modifier</Link>
-                                {/* <button onClick={(e) => handleDelete(e, category.slug, category.id)}>Supprimer</button> */}
-                                
                                 <br></br>
                             </>
                         ))}

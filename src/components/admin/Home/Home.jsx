@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 function Home() {
-    // On récupère notre statut grâce à useSelector
+
+    // On récupère les données stockées au store (RTK).
     const state = useSelector((state) => state.auth.value)
+
+    // Pour stocker les statistiques.
     const [data, setData] = useState([]);
 
     useEffect(() => {

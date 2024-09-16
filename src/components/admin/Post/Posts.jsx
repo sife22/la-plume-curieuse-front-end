@@ -4,8 +4,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Posts() {
+
+    // Cette variable pour stocker tous les posts.
     const [posts, setPosts] = useState([]);
+
+    // On récupère les données stockées au store (RTK).
     const state = useSelector((state) => state.auth.value)
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts-author`, {
             headers: {
@@ -36,6 +41,7 @@ function Posts() {
             console.log(error);
         })
     }
+    
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">

@@ -7,17 +7,18 @@ import "./SideNav.css"
 
 
 function SideNav() {
-    // On récupère notre état grâce à la fonction useSelector
+
+    // On récupère les données stockées au store (RTK).
     const state = useSelector((state) => state.auth.value)
 
     const location = useLocation();
 
-    // On crée une instance de useDispatch pour déclencher les fonctions souhaitées
+    // On crée une instance de useDispatch pour déclencher les fonctions souhaitées.
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
-    // Déconnexion
+    // On gére le clic sur le bouton 'Se déconnecter'.
     const handleLogout = (e) => {
         e.preventDefault();
         axios.delete(`${process.env.REACT_APP_BASE_URL_WITH_API}/logout`, {
@@ -27,10 +28,10 @@ function SideNav() {
                 "Authorization": `Bearer ${state.access_token}`,
             }
         }).then((response) => {
-            // On déclenche la fonction logout définie sur authSlice
+            // On déclenche la fonction logout définie sur authSlice.
             dispatch(logout());
 
-            // On renvoie l'utilisateur vers la page connexion
+            // On renvoie l'utilisateur vers la page connexion.
             navigate('/connexion');
         }
         ).catch((error) =>

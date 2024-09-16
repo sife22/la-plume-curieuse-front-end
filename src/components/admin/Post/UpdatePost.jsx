@@ -6,21 +6,34 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function UpdatePost() {
 
+    // Pour récupérer le post souhaité.
     const [post, setPost] = useState([]);
-    const { slugPost } = useParams();
-    const [error404, setError404] = useState(false)
-    const state = useSelector((state) => state.auth.value)
-    const [errors, setErrors] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [categories, setCategories] = useState([]);
-    const navigate = useNavigate();
 
+    // On utilise cette variable pour récupérer le slugPost stocké sur le URL.
+    const { slugPost } = useParams()
+    ;
+
+    // On récupère les données stockées au store (RTK).
+    const state = useSelector((state) => state.auth.value)
+
+    // Pour gérer les erreurs.
+    const [error404, setError404] = useState(false)
+    const [errors, setErrors] = useState([]);
+
+    const [loading, setLoading] = useState(false);
+
+    // Pour récupérer les catégories si l'utilisateur veut modifier la catégorie.
+    const [categories, setCategories] = useState([]);
+
+    const navigate = useNavigate();
+    const [message, setMessage] = useState('');
+
+    // Pour les nouvelles données du post.
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [picture, setPicture] = useState();
     const [categoryId, setCategoryId] = useState();
     const [content, setContent] = useState('');
-    const [message, setMessage] = useState('');
 
     const handleUpdate = (e) => {
         e.preventDefault();

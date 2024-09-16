@@ -4,10 +4,12 @@ import { useSelector } from 'react-redux';
 
 function Newsletter() {
 
-    // On récupère notre statut grâce à useSelector
+    // On récupére les données stockées au store.
     const state = useSelector((state) => state.auth.value);
     
+    // Pour stocker les emails de newsletter.
     const [emails, setEmail] = useState([]);
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/newsletter`, {
             headers: {
@@ -20,6 +22,7 @@ function Newsletter() {
         }).catch((error) => console.log(error)
         )
     }, [])
+    
     return (
         <div className="main-content">
             <header className="mobile-nav pt-4">

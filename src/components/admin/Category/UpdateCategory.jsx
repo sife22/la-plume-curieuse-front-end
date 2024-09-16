@@ -4,16 +4,24 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function UpdateCategory() {
+
+    // On récupère les données stockées au store.
     const state = useSelector((state)=>state.auth.value);
+
+    // On utilise cette variable pour récupérer le slugCatégorie stocké sur le URL.
     const { slugCategory } = useParams();
+
+    // Pour stocker les nouvelles données de la catégorie.
     const [name, setName] = useState('');
-    const navigate = useNavigate();
     const [description, setDescription] = useState('');
+
     const [message, setMessage] = useState('');
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(false);
+    
+    const navigate = useNavigate();
 
-
+    // Pour stocker la catégorie souhaitée.
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
@@ -87,7 +95,6 @@ function UpdateCategory() {
                                 <div className="form-group mb-2">
                                     <label for="name" className="text-black-300">Nom</label>
                                     <input type="text" id="name"
-                                        // value={category.name}
                                         className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                         required 
                                         onChange={(e) => setName(e.target.value)}
@@ -101,7 +108,6 @@ function UpdateCategory() {
                                 <div className="form-group mb-2">
                                     <label for="description" className="text-black-300">Description</label>
                                     <input type="text" id="description"
-                                        // value={category.description}
                                         className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                         required 
                                         onChange={(e) => setDescription(e.target.value)} 
