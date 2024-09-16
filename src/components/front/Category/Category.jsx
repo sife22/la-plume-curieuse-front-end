@@ -4,18 +4,29 @@ import { Link, useParams } from 'react-router-dom'
 import Footer from '../Footer/Footer';
 
 function Category() {
-    const { slugCategory } = useParams();
-    const [category, setCategory] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [error404, setError404] = useState(true)
-    const [posts, setPosts] = useState([]);
-    const [info, setInfo] = useState({});
 
+    // On utilise cette variable pour récupérer le slugCatégorie stocké sur le URL.
+    const { slugCategory } = useParams();
+
+    // On utilise cette variable pour stocker la catégorie souhaitée.
+    const [category, setCategory] = useState([]);
+
+    // On utilise cette variable pour stocker les autres catégories disponibles.
+    const [categories, setCategories] = useState([]);
+
+    // Au cas où la catégorie n'a pas été trouvée, On va utiliser cette variable pour une page 404.
+    const [error404, setError404] = useState(true)
+
+    // On utilise cette variable pour stocker les postes associés à cette catégorie.
+    const [posts, setPosts] = useState([]);
+
+    // Cette variable est utilisée pour stocker les informations de pagination envoyées par le backend.
+    const [info, setInfo] = useState({});
 
     const url = `${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts/${slugCategory}`
 
+    // On utilise cette fonction pour récupérer les postes associés à cette catégorie.
     const getPosts = (url) => {
-
         axios.get(url, { params: { 'slugCategory': slugCategory } }, {
             headers: {
                 "Accept": "application/json",
@@ -24,7 +35,6 @@ function Category() {
         }).then((response) => {
             setPosts(response.data.posts.data)
             setInfo(response.data.posts)
-
             setError404(false)
         }).catch((error) => {
             if (error.status === 404) {
@@ -60,22 +70,20 @@ function Category() {
             }
         });
 
-
         getPosts(url);
-
-
     }, [slugCategory])
 
+    // On gère le clic sur le bouton 'Précédent'.
     const handlePreviousPage = () => {
         getPosts(info.prev_page_url)
         window.scrollTo(0, 0)
     }
 
+    // On gère le clic sur le bouton 'Suivant'.
     const handleNextPage = () => {
         getPosts(info.next_page_url)
         window.scrollTo(0, 0)
     }
-
 
     return (
         error404 ? (<div></div>) : (
@@ -116,6 +124,7 @@ function Category() {
                                     <div className="col-xl-6 pl-0 pl-xl-5 mt-4 mt-xl-0">
                                         <div className="categores-links text-capitalize">
                                             <h3 className="text-white add-letter-space mb-3">Autres Catégories</h3>
+                                            {/* On affiche les autres catégories */}
                                             {categories.length > 0 && categories.map((item) => (
                                                 <Link className="border" to={`/${item.slug}`} key={item.id}>{item.name}</Link>
                                             ))}
@@ -127,6 +136,7 @@ function Category() {
                     </div>
 
                     <div className="row justify-content-between">
+                        {/* On affiche les articles stockés sur la variable posts */}
                         {posts && posts.map((post) => (
                             <div className="col-lg-11" key={post.id}>
                                 <div className="card post-item bg-transparent border-0 mb-5">
@@ -155,6 +165,7 @@ function Category() {
                                 </div>
                             </div>
                         ))}
+                        {/* On affiche conditionnellement les boutons de pagination */}
                         <ul className='pagination justify-content-centre'>
                             {info.prev_page_url ? (
                                 <li className="page-item">

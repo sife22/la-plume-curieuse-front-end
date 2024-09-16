@@ -1,14 +1,22 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import AOS from 'aos';
+import "aos/dist/aos.css"
 
 function Newsletter() {
     const [loading, setLoading] = useState(false);
 
+    // On utilise ces variables pour stocker l'email saisi, et afficher soit le message de succès ou d'erreur.
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
-    // On gère le clic sur le boutton, abonnez-vous 
+    useEffect(()=>{
+         // On met cette ligne pour initialiser le package AOS.
+         AOS.init({ duration: 1000 });
+    }, [])
+
+    // On gère le clic sur le bouton 'Abonnez-vous'.
     const handleSubscribe = (e) => {
         e.preventDefault();
         setLoading(true)
@@ -40,7 +48,7 @@ function Newsletter() {
                         placeholder="Votre boite mail" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <button className="btn btn-primary" onClick={handleSubscribe} disabled={loading} >{loading ? '...' : 'Abonnez-vous maintenant'} <img src="images/arrow-right.png"
                         alt="" /></button>
-                    {message && (<p className='mt-3 text-success'>{message}</p>)}
+                    {message && (<p className='mt-3 text-success' data-aos="zoom-out">{message}</p>)}
                     {error && (<p className='mt-3 text-warning'>{error}</p>)}
                 </div>
             </div>

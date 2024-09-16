@@ -7,26 +7,36 @@ import Footer from '../Footer/Footer';
 import './Post.css';
 import Categories from '../Categories/Categories';
 import FlipMove from 'react-flip-move';
+import AOS from 'aos';
+import "aos/dist/aos.css"
 
 function Post() {
     const [active, setActive] = useState(false)
+
+    // On augmente cette variable à chaque fois qu'on est sur cette page.
     const [views, setViews] = useState([]);
 
-
-    const [categories, setCategories] = useState([]);
+    // On utilise cette variable pour récupérer le slugPost stocké sur le URL.
     const { slugPost } = useParams();
+
+    // Au cas où le post n'a pas été trouvée, On va utiliser cette variable pour une page 404.
     const [error404, setError404] = useState(false)
+
+    // Pour stocker le post.
     const [post, setPost] = useState([]);
 
+    // Ces deux variables pour gérer les commentaires.
     const [authorName, setAuthorName] = useState('');
     const [content, setContent] = useState('');
+
     const [errors, setErrors] = useState([]);
     const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    // Pour récupérer tous les commentaires associés à ce post.
     const [comments, setComments] = useState([]);
 
-
+    // On utilise cette fonction pour gérer l'envoi de commentaires.
     const handleComment = (e) => {
         setLoading(true)
         axios.post(`${process.env.REACT_APP_BASE_URL_WITH_API}/add-comment/${slugPost}`, { authorName, content }, {
@@ -51,14 +61,13 @@ function Post() {
                 console.log(error);
             }
             console.log(error);
-
         }
         )
     }
 
-
-
     useEffect(() => {
+        // On met cette ligne pour initialiser le package AOS.
+        AOS.init({ duration: 1000 });
         axios.put(`${process.env.REACT_APP_BASE_URL_WITH_API}/add-view/${slugPost}`, {
             headers: {
                 "Accept": "application/json",
@@ -69,17 +78,6 @@ function Post() {
         }
         ).catch((error) => console.log(error)
         )
-
-        axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            }
-        }).then((response) => {
-            setCategories(response.data.categories);
-        }).catch((error) => {
-            console.log(error);
-        })
 
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-post/${slugPost}`, {
             headers: {
@@ -143,22 +141,15 @@ function Post() {
                         <h1 className="text-white add-letter-space mt-4">{post?.title}</h1>
                         <h3 className="text-white add-letter-space mt-4">{post?.summary}</h3>
                         <ul className="post-meta mt-3 mb-4">
-                            {/* <div style={{ width: "1.5rem" }} className='d-inline-block mr-3'>
-                                <Heart isActive={active} onClick={() => setActive(!active)} animationTrigger="both" inactiveColor="rgba(255,125,125,.75)" activeColor="red" animationDuration={0.1} />
-                            </div>
-                            <li className="d-inline-block mr-3">
-                                <span className="fas fa-heart text-primary"></span>
-                                <span className="ml-1">22</span>
-                            </li> */}
                             <li className="d-inline-block mr-3">
                                 <span className="fas fa-clock text-primary"></span>
-                                <a className="ml-1" href='#!'>{new Date(post?.created_at).toLocaleDateString('fr-FR', {
+                                <a className="ml-1" href='#!'>{post.created_at ? new Date(post?.created_at).toLocaleDateString('fr-FR', {
                                     year: 'numeric',
                                     month: 'long',
                                     day: 'numeric',
                                     hour: 'numeric',
                                     minute: 'numeric'
-                                })}</a>
+                                }) : null}</a>
                             </li>
                             <li className="d-inline-block mr-3">
                                 <span className="fas fa-list-alt text-primary"></span>
@@ -172,12 +163,10 @@ function Post() {
                                 <span className="fas fa-eye text-primary"></span>
                                 <span className="ml-1 text-white">{views ? views : ''}</span>
                             </li>
-
-
                         </ul>
-
-                        <div dangerouslySetInnerHTML={{ __html: post?.content}} className='text-white' />
+                        <div dangerouslySetInnerHTML={{ __html: post?.content }} className='text-white' />
                     </div>
+
                     <div className="col-lg-4 col-md-5">
                         <Newsletter />
                         <Categories />
@@ -188,14 +177,13 @@ function Post() {
                                     {comments.length !== 0 && comments.map((item) => (
                                         <p className="btn btn-dark comment mb-2"><span><u>{item.author_name}</u> : </span>{item.content}
                                         </p>
-
                                     ))}
                                 </FlipMove>
                             </div>
                         </div>
                     </div>
-                    {/* comment */}
-                    <div className="col-md-8 mb-5">
+                    {/* Pour les commentaires */}
+                    <div className="col-md-8 mb-5" data-aos="zoom-out">
                         <div className="contact-form bg-dark">
                             <h1 className="text-white add-letter-space mb-5">Laisser un commentaire</h1>
                             <form className="needs-validation" noValidate>
@@ -221,8 +209,6 @@ function Post() {
                                             <p className={`text-warning ${!errors.content && 'invisible'}`}>{errors.content ? errors.content[0] : 'Feedback'}</p>
                                         </div>
                                     </div>
-
-
                                     <div className="col-md-12 mt-3">
                                         <button type="button"
                                             onClick={handleComment}
@@ -235,7 +221,6 @@ function Post() {
                             </form>
                         </div>
                     </div>
-                    {/* end comment */}
                 </div>
             </div>
             <Footer />

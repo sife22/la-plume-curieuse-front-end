@@ -4,7 +4,7 @@ import './SideNav.css';
 
 function SideNav() {
     
-    // useLocation est utilisé pour récupérer le pathname de la page actuelle
+    // useLocation est utilisé pour récupérer le pathname de la page actuelle.
     const location = useLocation();
 
     return (

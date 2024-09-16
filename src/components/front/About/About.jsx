@@ -23,7 +23,6 @@ function About() {
             </header>
             <div className="nav-toggle-overlay"></div>
             <div className="container py-4 my-5">
-
                 <div className="row">
                     <div className="col-md-8">
                         <img className="img-fluid" src="/images/author.JPG" alt="" width="100%" height="100px" />

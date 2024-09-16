@@ -13,13 +13,18 @@ import "aos/dist/aos.css"
 
 function Home() {
 
+    // On utilise cette variable pour stocker les posts.
     const [posts, setPosts] = useState([]);
+
+    // Cette variable est utilisée pour stocker les informations de pagination envoyées par le backend.
     const [info, setInfo] = useState({});
 
     const url = `${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`
 
+    // On utilise cette fonction pour récupérer les postes.
     const getPosts = (url) => {
-        // On récupère tous les articles
+
+        // On récupére tous les articles.
         axios.get(url, {
             headers: {
                 "Accept": "application/json",
@@ -35,15 +40,20 @@ function Home() {
     }
 
     useEffect(() => {
+        // On met cette ligne pour initialiser le package AOS.
         AOS.init({ duration: 1000 });
+
+        // On appelle la fonction getPosts.
         getPosts(url);
     }, [])
 
+    // On gère le clic sur le bouton 'Précédent'.
     const handlePreviousPage = () => {
         getPosts(info.prev_page_url)
         window.scrollTo(0, 0)
     }
 
+    // On gère le clic sur le bouton 'Suivant'.
     const handleNextPage = () => {
         getPosts(info.next_page_url)
         window.scrollTo(0, 0)
@@ -73,8 +83,8 @@ function Home() {
             <div className="container pt-4 mt-5">
                 <div className="row justify-content-between">
                     <div className="col-lg-8">
-                        {/* Post */}
                         <h1 className='mb-5 text-white lato'>La Plume Curieuse</h1>
+                        {/* On affiche tous les posts récupérés par la fonction getPosts */}
                         {posts && posts.map((post) => (
                             <div className="card post-item bg-transparent border-0 mb-3" key={post.id} data-aos="zoom-out">
                                 <Link to={`/${post.categories[0].slug}/${post.slug}`}>
@@ -108,8 +118,8 @@ function Home() {
                                 </div>
                             </div>
                         ))}
-                        {/* End Post */}
-                        <ul className='pagination justify-content-centre'>
+                        {/* On affiche conditionnellement les boutons de pagination */}
+                        <ul className='pagination justify-content-centre mb-5'>
                             {info.prev_page_url ? (
                                 <li className="page-item">
                                     <button className='btn btn-primary' onClick={handlePreviousPage}>

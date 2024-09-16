@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 
 function Categories() {
 
+    // On utilise cette variable pour stocker les catégories disponibles sur la plateforme.
     const [categories, setCategories] = useState([]);
+
     useEffect(() => {
 
-        // On récupère tous les catégories
+        // On récupère toutes les catégories.
         axios.get(`${process.env.REACT_APP_BASE_URL_WITH_API}/get-categories`, {
             headers: {
                 "Accept": "application/json",

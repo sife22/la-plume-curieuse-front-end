@@ -7,25 +7,26 @@ import Footer from '../Footer/Footer';
 
 
 function Login() {
+
+    // useNavigate est utilisé pour naviguer.
     const navigate = useNavigate();
 
-    // On crée les variables pour stocker les valeurs (email, password)
+    // On crée les variables pour stocker les valeurs (email, password).
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // On crée les variables pour gérer les erreurs
-        // L'erreur de l'autorisation
+    // On utilise cette variable pour gérer l'erreur d'authentification.
     const [error, setError] = useState('');
 
-        // Les erreurs de validations
+    // Pour les erreurs de validations.
     const [errors, setErrors] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
-    // On crée une instance de useDispatch pour déclencher les fonctions souhaitées
+    // On crée une instance de useDispatch pour déclencher les fonctions souhaitées (stockées sur le store RTK).
     const dispatch = useDispatch();
 
-    // Connexion
+    // On gére le clic sur le bouton 'Se connecter'.
     const handleLogin = (e) => {
         e.preventDefault();
         setLoading(true)
@@ -36,7 +37,7 @@ function Login() {
             }
         }).then((response) => {
             
-            // On déclenche la fonction login définie sur authSlice
+            // On déclenche la fonction login définie sur le fichier authSlice.
             dispatch(login({
                 'name': response.data.user.name,
                 'username': response.data.user.username,
