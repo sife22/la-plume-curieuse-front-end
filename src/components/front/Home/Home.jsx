@@ -6,6 +6,8 @@ import './Home.css'
 import { Link } from 'react-router-dom'
 import Founder from '../Founder/Founder'
 import Categories from '../Categories/Categories'
+import AOS from 'aos';
+import "aos/dist/aos.css"
 
 
 
@@ -17,33 +19,34 @@ function Home() {
     const url = `${process.env.REACT_APP_BASE_URL_WITH_API}/get-posts`
 
     const getPosts = (url) => {
-            // On récupère tous les articles
-            axios.get(url, {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                }
-            }).then((response) => {
-                setPosts(response.data.posts.data);
-                setInfo(response.data.posts)
-                console.log(response.data.posts);
-            }).catch((error) => {
-                console.log(error);
-            });
+        // On récupère tous les articles
+        axios.get(url, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        }).then((response) => {
+            setPosts(response.data.posts.data);
+            setInfo(response.data.posts)
+            console.log(response.data.posts);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     useEffect(() => {
+        AOS.init({ duration: 1000 });
         getPosts(url);
     }, [])
 
     const handlePreviousPage = () => {
         getPosts(info.prev_page_url)
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
     }
 
     const handleNextPage = () => {
         getPosts(info.next_page_url)
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
     }
 
 
@@ -73,7 +76,7 @@ function Home() {
                         {/* Post */}
                         <h1 className='mb-5 text-white lato'>La Plume Curieuse</h1>
                         {posts && posts.map((post) => (
-                            <div className="card post-item bg-transparent border-0 mb-3" key={post.id}>
+                            <div className="card post-item bg-transparent border-0 mb-3" key={post.id} data-aos="zoom-out">
                                 <Link to={`/${post.categories[0].slug}/${post.slug}`}>
                                     <img className="card-img-top rounded-0" src={`${process.env.REACT_APP_BASE_URL_WITHOUT_API}/uploads/posts/picture/${post.picture}`} alt="" />
                                 </Link>
@@ -110,14 +113,14 @@ function Home() {
                             {info.prev_page_url ? (
                                 <li className="page-item">
                                     <button className='btn btn-primary' onClick={handlePreviousPage}>
-                                    Précédent
+                                        Précédent
                                     </button>
                                 </li>
                             ) : null}
                             {info.next_page_url ? (
                                 <li className="page-item">
                                     <button className='btn btn-primary' onClick={handleNextPage}>
-                                    Suivant
+                                        Suivant
                                     </button>
                                 </li>
                             ) : null}
