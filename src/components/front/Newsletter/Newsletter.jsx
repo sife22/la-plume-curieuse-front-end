@@ -40,7 +40,7 @@ function Newsletter() {
     }
     return (
         <div className="widget bg-dark p-4 text-center mb-0">
-            <h2 className="widget-title text-white d-inline-block mt-4">Abonnez-vous au blog</h2>
+            <h2 className="widget-title text-white d-inline-block mt-4">Abonnez-vous</h2>
             <p className="mt-4">Restez informé des dernières actualités et tendances en vous abonnant à notre newsletter. Recevez des articles exclusifs.</p>
             <div>
                 <div className="form-group">

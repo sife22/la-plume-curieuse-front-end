@@ -34,7 +34,7 @@ function Contact() {
                             <h1 className="text-white add-letter-space mb-5">Contactez-nous</h1>
                             <form className="needs-validation" noValidate>
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="form-group mb-5">
                                             <label htmlFor="firstName" className="text-black-300">Nom</label>
                                             <input type="text" id="firstName"
@@ -43,7 +43,7 @@ function Contact() {
                                             <p className="invalid-feedback">Your first-name is required!</p>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="form-group mb-5">
                                             <label htmlFor="lastName" className="text-black-300">Prénom</label>
                                             <input type="text" id="lastName"
@@ -52,23 +52,13 @@ function Contact() {
                                             <p className="invalid-feedback">Your last-name is required!</p>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="form-group mb-5">
                                             <label htmlFor="email" className="text-black-300">Email</label>
                                             <input type="email" id="email"
                                                 className="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"
                                                 placeholder="johndoe@gmail.com" required />
                                             <p className="invalid-feedback">Your email is required!</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group mb-5">
-                                            <label className="text-black-300">Sujet</label>
-                                            <select className="d-block w-100">
-                                                <option value="1">...</option>
-                                                <option value="2">...</option>
-                                                <option value="3">...</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
