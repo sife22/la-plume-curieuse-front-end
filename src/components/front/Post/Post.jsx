@@ -9,6 +9,8 @@ import Categories from '../Categories/Categories';
 import FlipMove from 'react-flip-move';
 import AOS from 'aos';
 import "aos/dist/aos.css"
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function Post() {
     const [active, setActive] = useState(false)
@@ -32,6 +34,7 @@ function Post() {
     const [errors, setErrors] = useState([]);
     const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [loadingPost, setLoadingPost] = useState(true);
 
     // Pour récupérer tous les commentaires associés à ce post.
     const [comments, setComments] = useState([]);
@@ -86,6 +89,7 @@ function Post() {
             }
         }).then((response) => {
             setPost(response.data.post)
+            setLoadingPost(false)
         }).catch((error) => {
             if (error.status === 404) {
                 setError404(true)
@@ -136,52 +140,84 @@ function Post() {
 
             <div className="container pt-4 mt-5">
                 <div className="row justify-content-between">
-                    <div className="col-lg-8 mb-5">
-                        <img className="img-fluid" src={`${process.env.REACT_APP_BASE_URL_WITHOUT_API}/uploads/posts/picture/${post?.picture}`} alt="" />
-                        <h1 className="text-white add-letter-space mt-4">{post?.title}</h1>
-                        <h3 className="text-white add-letter-space mt-4">{post?.summary}</h3>
-                        <ul className="post-meta mt-3 mb-4">
-                            <li className="d-inline-block mr-3">
-                                <span className="fas fa-clock text-primary"></span>
-                                <a className="ml-1" href='#!'>{post.created_at ? new Date(post?.created_at).toLocaleDateString('fr-FR', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                    hour: 'numeric',
-                                    minute: 'numeric'
-                                }) : null}</a>
-                            </li>
-                            <li className="d-inline-block mr-3">
-                                <span className="fas fa-list-alt text-primary"></span>
-                                {post.categories && post.categories.length > 0 ? (
-                                    <Link className="ml-1" to={`/${post.categories[0].slug}`}>{post.categories[0].name}</Link>
-                                ) : (
-                                    <span className="ml-1"></span>
-                                )}
-                            </li>
-                            <li className="d-inline-block mr-3">
-                                <span className="fas fa-eye text-primary"></span>
-                                <span className="ml-1 text-white">{views ? views : ''}</span>
-                            </li>
-                        </ul>
-                        <div dangerouslySetInnerHTML={{ __html: post?.content }} className='text-white' />
-                    </div>
-
-                    <div className="col-lg-4 col-md-5">
-                        <Newsletter />
-                        <Categories />
-                        <div className="widget bg-dark p-4 text-center">
-                            <h2 className="widget-title text-white d-inline-block mt-4">Commentaires</h2>
-                            <div className="form-group mt-4 comments">
-                                <FlipMove>
-                                    {comments.length !== 0 && comments.map((item) => (
-                                        <p className="btn btn-dark comment mb-2"><span><u>{item.author_name}</u> : </span>{item.content}
-                                        </p>
-                                    ))}
-                                </FlipMove>
+                    {loadingPost ? (
+                        <>
+                            <div
+                                className="col-lg-8 mb-5"
+                                style={{
+                                    marginTop: '2rem',
+                                }}
+                            >
+                                <SkeletonTheme baseColor="#202020" highlightColor="#E4112F">
+                                    <p>
+                                        <Skeleton count={20} />
+                                    </p>
+                                </SkeletonTheme>
                             </div>
-                        </div>
-                    </div>
+                            <div
+                                className="col-lg-4 col-md-5"
+                                style={{
+                                    marginTop: '2rem',
+                                }}
+                            >
+                                <SkeletonTheme baseColor="#202020" highlightColor="#E4112F">
+                                    <p>
+                                        <Skeleton count={30} />
+                                    </p>
+                                </SkeletonTheme>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="col-lg-8 mb-5">
+                                <img className="img-fluid" src={`${process.env.REACT_APP_BASE_URL_WITHOUT_API}/uploads/posts/picture/${post?.picture}`} alt="" />
+                                <h1 className="text-white add-letter-space mt-4">{post?.title}</h1>
+                                <h3 className="text-white add-letter-space mt-4">{post?.summary}</h3>
+                                <ul className="post-meta mt-3 mb-4">
+                                    <li className="d-inline-block mr-3">
+                                        <span className="fas fa-clock text-primary"></span>
+                                        <a className="ml-1" href='#!'>{post.created_at ? new Date(post?.created_at).toLocaleDateString('fr-FR', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric',
+                                            hour: 'numeric',
+                                            minute: 'numeric'
+                                        }) : null}</a>
+                                    </li>
+                                    <li className="d-inline-block mr-3">
+                                        <span className="fas fa-list-alt text-primary"></span>
+                                        {post.categories && post.categories.length > 0 ? (
+                                            <Link className="ml-1" to={`/${post.categories[0].slug}`}>{post.categories[0].name}</Link>
+                                        ) : (
+                                            <span className="ml-1"></span>
+                                        )}
+                                    </li>
+                                    <li className="d-inline-block mr-3">
+                                        <span className="fas fa-eye text-primary"></span>
+                                        <span className="ml-1 text-white">{views ? views : ''}</span>
+                                    </li>
+                                </ul>
+                                <div dangerouslySetInnerHTML={{ __html: post?.content }} className='text-white' />
+                            </div>
+
+                            <div className="col-lg-4 col-md-5">
+                                <Newsletter />
+                                <Categories />
+                                <div className="widget bg-dark p-4 text-center">
+                                    <h2 className="widget-title text-white d-inline-block mt-4">Commentaires</h2>
+                                    <div className="form-group mt-4 comments">
+                                        <FlipMove>
+                                            {comments.length !== 0 && comments.map((item) => (
+                                                <p className="btn btn-dark comment mb-2"><span><u>{item.author_name}</u> : </span>{item.content}
+                                                </p>
+                                            ))}
+                                        </FlipMove>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )}
+
                     {/* Pour les commentaires */}
                     <div className="col-md-8 mb-5" data-aos="zoom-out">
                         <div className="contact-form bg-dark">
