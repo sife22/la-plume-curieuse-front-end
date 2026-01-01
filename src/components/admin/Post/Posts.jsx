@@ -61,15 +61,12 @@ function Posts() {
                 </div>
             </header>
             <div className="nav-toggle-overlay"></div>
-
             <div className="container py-4 my-5">
-
                 <div className="row">
                     <div className="col-md-9">
                         <h1 className="text-white add-letter-space mb-3">Articles</h1>
                     </div>
                 </div>
-
                 <div className="row mt-5">
                     <div className="col-md-11">
                         <table className="table table-bordered text-center text-white table-transparent">

@@ -10,6 +10,7 @@ import AOS from 'aos';
 import "aos/dist/aos.css"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import SkeletonComponent from '../../skeleton/SkeletonComponent'
 
 
 
@@ -92,17 +93,18 @@ function Home() {
                         <h1 className='mb-5 text-white lato'>La Plume Curieuse</h1>
                         {/* On affiche tous les posts récupérés par la fonction getPosts */}
                         {loading ?
-                            <div
-                                style={{
-                                    marginTop: '2rem',
-                                }}
-                            >
-                                <SkeletonTheme baseColor="#202020" highlightColor="#E4112F">
-                                    <p>
-                                        <Skeleton count={10} />
-                                    </p>
-                                </SkeletonTheme>
-                            </div>
+                            <SkeletonComponent count={20} />
+                            // <div
+                            //     style={{
+                            //         marginTop: '2rem',
+                            //     }}
+                            // >
+                            //     <SkeletonTheme baseColor="#202020" highlightColor="#E4112F">
+                            //         <p>
+                            //             <Skeleton count={10} />
+                            //         </p>
+                            //     </SkeletonTheme>
+                            // </div>
                             : (
                             posts && posts.map((post) => (
                                 <div className="card post-item bg-transparent border-0 mb-3" key={post.id} data-aos="zoom-out">
